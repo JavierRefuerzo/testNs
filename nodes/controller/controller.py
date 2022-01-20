@@ -159,7 +159,7 @@ class Controller(udi_interface.Node):
 
     def poll(self, polltype):
         if 'shortPoll' in polltype:
-            self.getOpenSprinklerStatus()
+            LOGGER.info("Short Pool")
         # if 'longPoll' in polltype:
         #     self.updateStatus()
 
