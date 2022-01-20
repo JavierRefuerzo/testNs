@@ -9,14 +9,14 @@
       <sends />
       <accepts>
         <cmd id="COMMAND">
-          <p id="DEVICE" editor="rainDelay" />
-          <p id="BUTTON" editor="rainDelay" />
-          <p id="CODE" editor="rainDelay" />
-          <p id="CONNECTOR" editor="rainDelay" />
-          <p id="REPETE" editor="rainDelay" />
+          <p id="DEVICE" editor="device" />
+          <p id="BUTTON" editor="button" />
+          <p id="CODE" editor="code" />
+          <p id="CONNECTOR" editor="connector" />
+          <p id="REPETE" editor="repete" />
         </cmd>
         <cmd id="STOP" />
-          <p id="CONNECTOR" editor="rainDelay" />
+          <p id="CONNECTOR" editor="connector" />
       </accepts>
     </cmds>
   </nodeDef>
