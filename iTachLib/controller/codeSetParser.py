@@ -11,6 +11,8 @@ import ast
 import email
 import json
 from typing import List
+import udi_interface
+LOGGER = udi_interface.LOGGER
 
 from iTachLib.controller.irCode import IrCode
 
@@ -36,11 +38,12 @@ class CodeSetParser:
         
         #strip any blank space or new lines
         data = data.strip()
+        LOGGER.info('data is: ' + data)
 
         #split into codes
         #Note Plolyglot may set this as two blank spaces
         codes = data.split("  ")
-    
+        LOGGER.info('codes is: ' + str(codes))
         
         for index, code in enumerate(codes):
 
