@@ -182,9 +182,12 @@ class Controller(udi_interface.Node):
 
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
-        for param in params:
+        for (key, value)in params:
             #jsonObject = json.loads(param)
-            self.processParam(param)
+            #LOGGER.info("Param is: " + str(param))
+            LOGGER.info("Value is: " + value)
+            LOGGER.info("Key is: " + key)
+            #self.processParam(param)
             
         
         
