@@ -187,10 +187,10 @@ class Controller(udi_interface.Node):
         
     def processParam(self, param):
         LOGGER.info("Param is: " + str(self.Parameters))
-        try:
-            codes = CodeSetParser().parse(param)
-        except Exception as e:
-            LOGGER.info("Parse Error: " + str(e))
+        # try:
+        #     codes = CodeSetParser().parse(param)
+        # except Exception as e:
+        #     LOGGER.info("Parse Error: " + str(e))
 
-        if len(codes.codeset) == 0:
-            LOGGER.info("Parse Error: code list is empty")
+        # if len(codes.codeset) == 0:
+        #     LOGGER.info("Parse Error: code list is empty")
