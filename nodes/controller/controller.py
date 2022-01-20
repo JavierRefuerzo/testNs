@@ -185,7 +185,7 @@ class Controller(udi_interface.Node):
         LOGGER.info('makeRequest')
         codes: CodeSetParser
         for param in params:
-
+            LOGGER.info("Param is: " + str(param))
             #do not parse type params
             enum = Params.get(value=param)
             LOGGER.info("enum is: " + str(enum))
@@ -193,7 +193,7 @@ class Controller(udi_interface.Node):
                 LOGGER.info("Not parsing IR Param is: " + param)
                 continue
             
-            LOGGER.info("Param is: " + str(param))
+            #LOGGER.info("Param is: " + str(param))
             LOGGER.info("Value is: " + params[param])
             try:
                 codes = CodeSetParser()
