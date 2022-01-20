@@ -7,7 +7,6 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from enum import Enum
-from types import _StaticFunctionType
 from typing import List
 
 
