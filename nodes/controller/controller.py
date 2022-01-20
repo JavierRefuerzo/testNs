@@ -15,7 +15,7 @@ from objects.errors import Errors
 from iTachLib.controller.controller import Controller as OpenSprinkler
 from nodes.observers.polyglotObserver import PolyglotObserver
 from constants.params import Params
-
+from iTachLib.controller.irCode import IrCode
 
 LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
@@ -183,7 +183,7 @@ class Controller(udi_interface.Node):
 
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
-        codes: CodeSetParser
+        codeSet: List[IrCode]
         for param in params:
             LOGGER.info("Param is: " + str(param))
             #do not parse type params
@@ -205,6 +205,8 @@ class Controller(udi_interface.Node):
             if len(codes.codeset) == 0:
                 LOGGER.info("Parse Error: code list is empty")
                 continue
+
+            codeSet.append(codes.codeSet)
             
         LOGGER.info("Number of ir codes " + str(len(codes.codeSet)))
         print(len(codes.codeSet))
