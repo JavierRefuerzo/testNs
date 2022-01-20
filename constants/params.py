@@ -7,6 +7,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from enum import Enum
+from types import _StaticFunctionType
 from typing import List
 
 
@@ -16,7 +17,8 @@ class Params(Enum) :
     url = "url"
     manualRunTimeSeconds = "manualRunTimeSeconds"
 
-    def get(self, value: str):
+    
+    def get(value: str):
         list: List[str] = []
         for enum in Params:
             if enum.value == value:
