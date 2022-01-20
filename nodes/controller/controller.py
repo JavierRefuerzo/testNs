@@ -189,7 +189,7 @@ class Controller(udi_interface.Node):
         
         
     def processParam(self, param):
-        LOGGER.info("Param is: " + str(self.Parameters))
+        LOGGER.info("Param is: " + str(param))
         # try:
         #     codes = CodeSetParser().parse(param)
         # except Exception as e:
