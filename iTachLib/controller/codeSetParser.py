@@ -48,7 +48,7 @@ class CodeSetParser:
         LOGGER.info("data split size: " + str(len(codes)))
         
         for index, code in enumerate(codes):
-
+            LOGGER.info("code is: " + code)
             # try:
             code = code.strip()
             #check for empty strings
