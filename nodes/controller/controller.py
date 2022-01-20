@@ -5,9 +5,9 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 import json
+import udi_interface
 from typing import Callable, List, final
 from iTachLib.controller.codeSetParser import CodeSetParser
-import udi_interface
 from nodes.controller.drivers import Drivers
 from nodes.controller.drivers import StatusValues
 from nodes.controller.drivers import ErrorValues
@@ -183,8 +183,8 @@ class Controller(udi_interface.Node):
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
         for param in params:
-            jsonObject = json.loads(param)
-            self.processParam(jsonObject)
+            #jsonObject = json.loads(param)
+            self.processParam(param)
             
         
         
