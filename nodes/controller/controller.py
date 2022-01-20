@@ -184,7 +184,7 @@ class Controller(udi_interface.Node):
         LOGGER.info('makeRequest')
         for param in params:
             jsonObject = json.loads(param)
-            self.processParam(param)
+            self.processParam(jsonObject)
             
         
         
