@@ -206,7 +206,7 @@ class Controller(udi_interface.Node):
                 LOGGER.info("Parse Error: code list is empty")
                 continue
             LOGGER.info("Number of ir codes " + str(len(parser.codeSet)))
-            codeSet.append(parser.codeSet)
+            codeSet.extend(parser.codeSet)
             
         LOGGER.info("Number of ir codes " + str(len(codeSet)))
         

@@ -13,8 +13,9 @@ from iTachLib.tests.codeSet import CodeSet
 
 codeSet = CodeSet()
 
-data = codeSet.getCodeSet()
-# data = codeSet.getParmSet()
+# data = codeSet.getCodeSet()
+#THIS MAY NOT WORK WITH UDI LOGGING ENABLED IN PARSER
+data = codeSet.getParmSet()
 
 parser = CodeSetParser()
 
