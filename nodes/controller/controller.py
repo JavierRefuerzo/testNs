@@ -156,7 +156,7 @@ class Controller(udi_interface.Node):
 
     def parameterHandler(self, params):
         self.Parameters.load(params)
-        LOGGER.info('---------------------GET Custom params TEST ' + str(self.Parameters))
+        LOGGER.info('GET Custom params TEST ' + str(self.Parameters))
         self.getCodeSet(params=params)
         #self.polyObserver.updateCustomParam(params)
 
