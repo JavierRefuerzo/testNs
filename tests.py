@@ -13,8 +13,8 @@ from iTachLib.tests.codeSet import CodeSet
 
 codeSet = CodeSet()
 
-# data = codeSet.getCodeSet()
-data = codeSet.getParmSet()
+data = codeSet.getCodeSet()
+# data = codeSet.getParmSet()
 
 parser = CodeSetParser()
 
