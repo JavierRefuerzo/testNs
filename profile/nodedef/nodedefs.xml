@@ -14,67 +14,22 @@
     <cmds>
       <sends />
       <accepts>
-        <cmd id="RAIN_DELAY">
-          <p id="" editor="rainDelay" />
+        <cmd id="COMMAND">
+          <p id="DEVICE" editor="rainDelay" />
+          <p id="BUTTON" editor="rainDelay" />
+          <p id="CODE" editor="rainDelay" />
+          <p id="CONNECTOR" editor="rainDelay" />
+          <p id="REPETE" editor="rainDelay" />
         </cmd>
-        <cmd id="STOP_ALL_STATIONS" />
-        <cmd id="REBOOT" />
-         <cmd id="ENABLE" />
-        <cmd id="DISABLE" />
+        <cmd id="STOP" />
+          <p id="CONNECTOR" editor="rainDelay" />
       </accepts>
     </cmds>
   </nodeDef>
 
 
 
-  <!-- Program Node -->
-  <nodeDef id="program"  nls="program">
-    <sts>
-      <st id="GV0" editor="bool" />
-      <st id="GV1" editor="bool" />
-	  </sts>
-    <cmds>
-      <sends />
-	    <accepts>
-        <cmd id="MANUAL_RUN_ONCE" />
-        <cmd id="STOP_ALL_STATIONS" />
-        <cmd id="ENABLE" />
-        <cmd id="DISABLE" />
-      </accepts>
-    </cmds>
-  </nodeDef>
-
-
-  <!-- Zone Parent -->
-  <nodeDef id="zoneParent"  nls="nlsZoneParent">
-    <sts>
-      <st id="GV0" editor="station" />
-	  </sts>
-    <cmds>
-      <sends />
-	    <accepts>
-      </accepts>
-    </cmds>
-  </nodeDef>
-
-  <!-- Zone Node -->
-  <nodeDef id="nodeDefZone"  nls="nlsZone">
-    <sts>
-      <st id="ST" editor="zoneStatus" />
-      <st id="GV0" editor="manualRun" />
-      <st id="GV1" editor="bool" />
-	  </sts>
-    <cmds>
-      <sends />
-	    <accepts>
-        <cmd id="MANUAL_RUN_TIME">
-          <p id="" editor="manualRun" init="GV0" />
-        </cmd>
-        <cmd id="DON" />
-        <cmd id="DOF" />
-      </accepts>
-    </cmds>
-  </nodeDef>
+ 
 
 
 </nodeDefs>

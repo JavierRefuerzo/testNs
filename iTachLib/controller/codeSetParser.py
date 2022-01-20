@@ -20,11 +20,13 @@ from iTachLib.controller.irCode import IrCode
 
 class CodeSetParser:
 
+    device: str
     codeSet: List[IrCode]
 
-    def __init__(self):
+    def __init__(self, device: str = "Unknwn"):
         print("CodeSetParser init")
         self.codeSet = []
+        self.device = device
 
     def parse(self, data: str):
         print ("parsing started")
