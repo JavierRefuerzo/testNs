@@ -87,7 +87,7 @@ class CodeSetParser:
                 ir.gdCodeTwo = codeInfo[3]
             # if size > 4:
             #     print("hexcode2 " + codeInfo[4])
-            
+            LOGGER.info("appending ir code")
             self.codeSet.append(ir)
             #print("codeInfo is:\n" + codeInfo + "\n")
 
