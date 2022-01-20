@@ -154,12 +154,12 @@ class Controller(udi_interface.Node):
 
     def parameterHandler(self, params):
         self.Parameters.load(params)
-        #LOGGER.info('---------------------GET Custom params TEST ' + str(self.Parameters))
+        LOGGER.info('---------------------GET Custom params TEST ' + str(self.Parameters))
         #self.polyObserver.updateCustomParam(params)
 
     def poll(self, polltype):
         if 'shortPoll' in polltype:
-            LOGGER.info("Short Pool")
+            print("shortPoll")
         # if 'longPoll' in polltype:
         #     self.updateStatus()
 
