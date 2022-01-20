@@ -187,10 +187,10 @@ class Controller(udi_interface.Node):
         for param in params:
 
             #do not parse type params
-            for custom in Params:
-                if param == custom.value:
-                    LOGGER.info("Type param not parsed as ir: " + param)
-                    continue
+            enum = Params.get(value=param)
+            if enum != None:
+                LOGGER.info("Not parsing IR Param is: " + param)
+                continue
             
             LOGGER.info("Param is: " + str(param))
             LOGGER.info("Value is: " + params[param])

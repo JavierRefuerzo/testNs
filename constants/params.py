@@ -7,6 +7,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from enum import Enum
+from typing import List
 
 
 class Params(Enum) :
@@ -15,7 +16,12 @@ class Params(Enum) :
     url = "url"
     manualRunTimeSeconds = "manualRunTimeSeconds"
 
-
+    def get(self, value: str):
+        list: List[str] = []
+        for enum in Params:
+            if enum.value == value:
+                return enum
+        return None   
 
 
 
