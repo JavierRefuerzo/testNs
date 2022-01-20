@@ -14,6 +14,7 @@ from nodes.controller.drivers import ErrorValues
 from objects.errors import Errors
 from iTachLib.controller.controller import Controller as OpenSprinkler
 from nodes.observers.polyglotObserver import PolyglotObserver
+from constants.params import Params
 
 
 LOGGER = udi_interface.LOGGER
@@ -184,6 +185,12 @@ class Controller(udi_interface.Node):
         LOGGER.info('makeRequest')
         codes: CodeSetParser
         for param in params:
+
+            #do not parse type params
+            for custom in Params:
+                if param == custom.value:
+                    LOGGER.info("Type param not parsed as ir: " + param)
+                    continue
             
             LOGGER.info("Param is: " + str(param))
             LOGGER.info("Value is: " + params[param])

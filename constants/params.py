@@ -6,7 +6,10 @@ Copyright (C) 2021 Javier Refuerzo
 """
 
 
-class Params :
+from enum import Enum
+
+
+class Params(Enum) :
     #These values are also hard coded into server.json
     password = "password"
     url = "url"
