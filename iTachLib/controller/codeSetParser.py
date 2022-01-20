@@ -39,7 +39,7 @@ class CodeSetParser:
 
         #split into codes
         #Note Plolyglot may set this as two blank spaces
-        codes = data.split("\n\n")
+        codes = data.split("  ")
     
         
         for index, code in enumerate(codes):
