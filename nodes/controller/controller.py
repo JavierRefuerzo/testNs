@@ -182,14 +182,29 @@ class Controller(udi_interface.Node):
 
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
+        codes: CodeSetParser
         for param in params:
-            #jsonObject = json.loads(param)
+            
             LOGGER.info("Param is: " + str(param))
             LOGGER.info("Value is: " + params[param])
-        
-            #self.processParam(param)
+            try:
+                codes = CodeSetParser()
+                codes.parse(param)
+            except Exception as e:
+                LOGGER.info("Parse Error: " + str(e))
+                continue
+
+            if len(codes.codeset) == 0:
+                LOGGER.info("Parse Error: code list is empty")
+                continue
             
+        LOGGER.info("Number of ir codes " + str(en(codes.codeSet)))
+        print(len(codes.codeSet))
+
         
+
+            
+
         
     def processParam(self, param):
         LOGGER.info("Param is: " + str(param))
