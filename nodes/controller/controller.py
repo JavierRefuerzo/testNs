@@ -183,7 +183,7 @@ class Controller(udi_interface.Node):
 
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
-        codeSet: List[IrCode]
+        codeSet: List[IrCode] = []
         for param in params:
             LOGGER.info("Param is: " + str(param))
             #do not parse type params
@@ -208,7 +208,7 @@ class Controller(udi_interface.Node):
 
             codeSet.append(codes.codeSet)
             
-        LOGGER.info("Number of ir codes " + str(len(codes.codeSet)))
+        LOGGER.info("Number of ir codes " + str(len(codeSet)))
         print(len(codes.codeSet))
 
         
