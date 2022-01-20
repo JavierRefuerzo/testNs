@@ -4,12 +4,6 @@
   <nodeDef id="ctl" nls="ctl">
     <sts>
       <st id="ST" editor="bool" />
-      <st id="GV0" editor="errors" />
-      <st id="GV1" editor="bool" />
-      <st id="GV2" editor="bool" />
-      <st id="GV3" editor="bool" />
-      <st id="GV4" editor="bool" />
-      <st id="GV5" editor="running" />
 	  </sts>
     <cmds>
       <sends />
