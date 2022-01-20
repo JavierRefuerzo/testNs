@@ -202,7 +202,7 @@ class Controller(udi_interface.Node):
                 LOGGER.info("Parse Error: " + str(e))
                 continue
 
-            if len(codes.codeset) == 0:
+            if len(codes.codeSet) == 0:
                 LOGGER.info("Parse Error: code list is empty")
                 continue
 
