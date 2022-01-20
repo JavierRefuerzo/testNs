@@ -4,6 +4,7 @@ Polyglot v3 node server OpenSprinkler
 Copyright (C) 2021 Javier Refuerzo
 
 """
+import json
 from typing import Callable, List, final
 from iTachLib.controller.codeSetParser import CodeSetParser
 import udi_interface
@@ -182,7 +183,8 @@ class Controller(udi_interface.Node):
     def getCodeSet(self, params):
         LOGGER.info('makeRequest')
         for param in params:
-           self.processParam(param)
+            jsonObject = json.loads(param)
+            self.processParam(param)
             
         
         
