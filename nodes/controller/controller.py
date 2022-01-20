@@ -209,7 +209,7 @@ class Controller(udi_interface.Node):
             codeSet.append(codes.codeSet)
             
         LOGGER.info("Number of ir codes " + str(len(codeSet)))
-        print(len(codes.codeSet))
+        
 
         
 
