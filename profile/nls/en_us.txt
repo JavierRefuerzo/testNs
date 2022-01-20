@@ -25,5 +25,11 @@ ERRORS-5 = Invalid URL
 ERRORS-6 = OpenSprinkler Firmware Update Required (min 2.1.9)
 
 
+CODE-1 = Button Code 1
+CODE-2 = Button Code 2
+
+CONNECTOR-1 = Left
+CONNECTOR-2 = Center
+CONNECTOR-3 = Right
 
 
