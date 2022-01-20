@@ -197,7 +197,7 @@ class Controller(udi_interface.Node):
             LOGGER.info("Value is: " + params[param])
             try:
                 codes = CodeSetParser()
-                codes.parse(param)
+                codes.parse( params[param])
             except Exception as e:
                 LOGGER.info("Parse Error: " + str(e))
                 continue
