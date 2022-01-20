@@ -5,6 +5,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 from typing import Callable, List, final
+from iTachLib.controller.codeSetParser import CodeSetParser
 import udi_interface
 from nodes.controller.drivers import Drivers
 from nodes.controller.drivers import StatusValues
@@ -177,6 +178,19 @@ class Controller(udi_interface.Node):
    
 #---------- Business Logic
 
-    def getOpenSprinkler(self):
+    def getCodeSet(self, params):
         LOGGER.info('makeRequest')
+        for param in params:
+           self.processParam(param)
+            
         
+        
+    def processParam(self, param):
+        LOGGER.info("Param is: " + str(self.Parameters))
+        try:
+            codes = CodeSetParser().parse(param)
+        except Exception as e:
+            LOGGER.info("Parse Error: " + str(e))
+
+        if len(codes.codeset) == 0:
+            LOGGER.info("Parse Error: code list is empty")
