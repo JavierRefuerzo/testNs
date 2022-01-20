@@ -196,17 +196,17 @@ class Controller(udi_interface.Node):
             #LOGGER.info("Param is: " + str(param))
             LOGGER.info("Value is: " + params[param])
             try:
-                codes = CodeSetParser()
-                codes.parse( params[param])
+                parser = CodeSetParser()
+                parser.parse( params[param])
             except Exception as e:
                 LOGGER.info("Parse Error: " + str(e))
                 continue
 
-            if len(codes.codeSet) == 0:
+            if len(parser.codeSet) == 0:
                 LOGGER.info("Parse Error: code list is empty")
                 continue
-
-            codeSet.append(codes.codeSet)
+            LOGGER.info("Number of ir codes " + str(len(parser.codeSet)))
+            codeSet.append(parser.codeSet)
             
         LOGGER.info("Number of ir codes " + str(len(codeSet)))
         
