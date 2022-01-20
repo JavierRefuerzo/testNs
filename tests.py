@@ -7,21 +7,15 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 
-from iTachLib.controller.credenital import Credential
-from constants.params import Params
-from iTachLib.tests.programTests import ProgramTests
-from iTachLib.tests.stationTests import StationTests
+from iTachLib.controller.codeSetParser import CodeSetParser
+from iTachLib.tests.codeSet import CodeSet
 
 
+codeSet = CodeSet()
 
-params = {Params.password : "opendoor", Params.url: "http://192.168.1.5"}
+data = codeSet.getCodeSet()
 
-creds = Credential(params=params)
-if creds.errors != None:
-    print("Couild not get CREDS: " + creds.errors.text)
-    exit()
+parser = CodeSetParser()
 
-
-ProgramTests(creds)
-
+parser.parse(data)
 #StationTests(creds)
