@@ -171,17 +171,19 @@ class Controller(udi_interface.Node):
             if device == None:
                 LOGGER.info('Could not get Device: ' + param)
                 continue
+            LOGGER.info('Added Device to Node List: ' + device.name)
             deviceList.append(device)
 
         #check that the controller is not null
         if self.iTach == None:
-            LOGGER.info('iTach Controller NOT set: ')
+            LOGGER.info('iTach Controller NOT set ')
             return
 
         # update the iTach Controller with new device list
+        LOGGER.info('Updating iTach Controller Device List. Number of Devices: ' + str(len(deviceList)))
         self.iTach.updateDevices(devices=deviceList)
         # update device nodes
-        self.updateDeviceList()
+        self.updateDeviceNodeList()
 
             
     def processDefinedParams(self, params):
@@ -210,15 +212,20 @@ class Controller(udi_interface.Node):
 
         
 
-    def updateDeviceList(self):
+    def updateDeviceNodeList(self):
+        LOGGER.info('Updating Device Node List')
         if self.iTach == None:
+            LOGGER.info('iTach Controller NOT set')
             return
         # get the device list from iTach
         devices = self.iTach.deviceList
+        LOGGER.info('Devices in iTach Controller: ' + str(len(devices)))
         for device in devices:
+            LOGGER.info('Checking Device against existing Nodes: ' + device.name)
             exists = False
             for node in self.deviceNodeList:
                 if node.name == device.name:
+                    LOGGER.info('updating Device Node: ' + node.device.name)
                     #node exists update the device i.e. ir codes
                     node.device = device
                     exists = True
@@ -226,7 +233,8 @@ class Controller(udi_interface.Node):
 
             if not exists:
                 #create new node
-                deviceNode = DeviceNode(self.poly, self.address, )
+                LOGGER.info('Createing New Device Node: ' + device.name)
+                deviceNode = DeviceNode(self.poly, self.address, device, self.polyObserver)
                 self.deviceNodeList.append(deviceNode)
 
         # All DeviceNodes should be added/updated
