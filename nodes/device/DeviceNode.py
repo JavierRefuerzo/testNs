@@ -11,7 +11,7 @@ import re
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
-from objects.dirModifier import DirModifier
+from objects.DirModifier import DirModifier
 from objects.polyglotObserver import PolyglotObserver
 
 
@@ -60,14 +60,16 @@ class DeviceNode(udi_interface.Node):
         #Set initial values
         
         #change the station name to include stationId
-        modifier = DirModifier()
-        self.address = self.setAddress(device=device)
+        mod = DirModifier()
+        self.address = mod.getAddress(device)
+        self.id = self.address
+        self.name = mod.get_valid_node_name(device.name)
 
         # Add global observer
         
 
         # Add this node to ISY
-        super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, device.name)
+        super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, self.name)
         self.poly.addNode(self)
 
         LOGGER.info('update station status')
@@ -78,24 +80,7 @@ class DeviceNode(udi_interface.Node):
 
     #---------- Unique Node Properties
 
-    def setAddress(self, device: Device) -> str:
-        LOGGER.info('set address')
-        name = device.name
-        name = name.replace(" ", "_")
-        name = name.lower()
-        name = self.get_valid_node_name(name)
-        return name
-
-    # Removes invalid charaters for ISY Node description
-    def get_valid_node_name(self, name, max_length=14) -> str:
-        offset = max_length * -1
-        # Only allow utf-8 characters
-        #  https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-froms-string
-        name = bytes(name, 'utf-8').decode('utf-8','ignore')
-        # Remove <>`~!@#$%^&*(){}[]?/\;:"'` characters from name
-        sname = re.sub(r"[<>`~!@#$%^&*(){}[\]?/\\;:\"']+", "", name)
-        # And return last part of name of over max_length
-        return sname[offset:].lower()
+   
     
     #---------- Status Setters
    

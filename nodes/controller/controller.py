@@ -13,6 +13,7 @@ from nodes.controller.drivers import Drivers
 from nodes.controller.drivers import StatusValues
 from nodes.controller.drivers import ErrorValues
 from nodes.device.DeviceNode import DeviceNode
+from objects.dirModifier import DirModifier
 from objects.errors import Errors
 from iTachLib.controller.controller import Controller as ITach
 from objects.polyglotObserver import PolyglotObserver
@@ -242,7 +243,10 @@ class Controller(udi_interface.Node):
         # Remove any nodes which no longer exist
         self._cleanDeviceList(newDeviceList=devices)
 
-        #TODO Create NodeDef, NLS, etc
+        mod = DirModifier()
+        mod.writeFiles(devices=devices)
+        self.poly.updateProfile()
+
 
     #removes any device not in new device list
     def _cleanDeviceList(self, newDeviceList: List[Device]):

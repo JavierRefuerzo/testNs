@@ -17,6 +17,8 @@ from iTachLib.controller.Device import Device
 
 class DirModifier :
         
+    def __init__(self) -> None:
+        pass
 
     def writeFiles(self, devices: List[Device]):
         self.makeNls(devices)
