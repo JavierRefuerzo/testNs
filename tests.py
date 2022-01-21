@@ -23,4 +23,5 @@ from objects.dirModifier import DirModifier
 #parser.parse(data)
 #StationTests(creds)
 
-mod = DirModifier()
+mod = DirModifier(devices=None)
+print("Finished")

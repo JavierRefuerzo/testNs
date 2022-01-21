@@ -4,3 +4,30 @@
 2022-01-21 13:29:08,364 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
 2022-01-21 13:29:57,416 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
 2022-01-21 13:29:57,832 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 13:55:54,066 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-21 13:55:54,462 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: Traceback (most recent call last):
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: File "/Users/javierrefuerzo/Python/ItachIrNodeServer/tests.py", line 26, in <module>
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: mod = DirModifier()
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: TypeError
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: :
+2022-01-21 13:55:54,492 MainThread udi_interface      ERROR    udi_interface:write: __init__() missing 1 required positional argument: 'devices'
+2022-01-21 13:57:26,372 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-21 13:57:26,783 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 13:57:26,801 MainThread udi_interface      ERROR    udi_interface:write: Traceback (most recent call last):
+2022-01-21 13:57:26,802 MainThread udi_interface      ERROR    udi_interface:write: File "/Users/javierrefuerzo/Python/ItachIrNodeServer/tests.py", line 26, in <module>
+2022-01-21 13:57:26,802 MainThread udi_interface      ERROR    udi_interface:write: mod = DirModifier()
+2022-01-21 13:57:26,802 MainThread udi_interface      ERROR    udi_interface:write: TypeError
+2022-01-21 13:57:26,802 MainThread udi_interface      ERROR    udi_interface:write: :
+2022-01-21 13:57:26,802 MainThread udi_interface      ERROR    udi_interface:write: __init__() missing 1 required positional argument: 'devices'
+2022-01-21 13:57:51,810 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-21 13:57:52,343 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 13:57:52,372 MainThread udi_interface      ERROR    udi_interface:write: Traceback (most recent call last):
+2022-01-21 13:57:52,373 MainThread udi_interface      ERROR    udi_interface:write: File "/Users/javierrefuerzo/Python/ItachIrNodeServer/tests.py", line 26, in <module>
+2022-01-21 13:57:52,373 MainThread udi_interface      ERROR    udi_interface:write: mod = DirModifier()
+2022-01-21 13:57:52,373 MainThread udi_interface      ERROR    udi_interface:write: TypeError
+2022-01-21 13:57:52,373 MainThread udi_interface      ERROR    udi_interface:write: :
+2022-01-21 13:57:52,373 MainThread udi_interface      ERROR    udi_interface:write: __init__() missing 1 required positional argument: 'devices'
+2022-01-21 13:58:32,958 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-21 13:58:33,376 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 13:58:33,404 MainThread udi_interface      DEBUG    udi_interface:write: Finished
