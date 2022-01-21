@@ -13,7 +13,7 @@
   </nodeDef>
 
   <!-- The device Node-->
-  <nodeDef id="device" nls="device">
+  <nodeDef id="irdevice" nls="device">
     <sts>
       <st id="ST" editor="bool" />
 	  </sts>

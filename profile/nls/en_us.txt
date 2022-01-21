@@ -1,14 +1,21 @@
 
 #####Controller
 
-ND-ctl-NAME = OpenSprinkler Controller
+ND-ctl-NAME = iTach IR
 ND-ctl-ICON = Output
 
 ST-ctl-ST-NAME = NodeServer Online
-ST-ctl-GV0-NAME = Last Error Message
+#ST-ctl-GV0-NAME = Last Error Message
 
-CMD-ctl-STOP-NAME = Stop IR
-CMD-ctl-COMMAND-NAME = Send IR
+#irdevice
+ND-irdevice-Name = IR Code Set
+ND-irdevice-ICON = Output
+ST-irdevice-ST-NAME = "Last Status"
+
+#Shared command names
+
+CMD-STOP-NAME = Stop IR
+CMD-COMMAND-NAME = Send IR
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector

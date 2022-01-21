@@ -32,7 +32,7 @@ This is our Zone device node.
 '''
 class DeviceNode(udi_interface.Node):
     #------------- Node Definitions
-    id = "nodeDefZone"
+    id = "irdevice"
 
     #------------- Status Drivers
     # Status Drivers
