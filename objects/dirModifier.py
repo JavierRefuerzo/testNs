@@ -78,10 +78,10 @@ class DirModifier :
         name = self._get_valid_node_name(name)
         return name
 
+    
     def _get_valid_node_name(self, name, max_length=14) -> str:
         offset = max_length * -1
         # Only allow utf-8 characters
-        #  https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-froms-string
         name = bytes(name, 'utf-8').decode('utf-8','ignore')
         # Remove <>`~!@#$%^&*(){}[]?/\;:"'` characters from name
         sname = re.sub(r"[<>`~!@#$%^&*(){}[\]?/\\;:\"']+", "", name)

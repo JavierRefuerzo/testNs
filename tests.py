@@ -9,7 +9,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from typing import List
-from objects.dirModifier import DirModifier
+from objects.DirModifier import DirModifier
 from iTachLib.controller.Device import Device
 from iTachLib.controller.irCode import IrCode
 
