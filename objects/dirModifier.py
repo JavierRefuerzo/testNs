@@ -9,6 +9,8 @@ Copyright (C) 2021 Javier Refuerzo
 from curses import nl
 import os
 
+from constants.defaultNLS import DefaultNls
+
 
 class DirModifier :
     
@@ -23,7 +25,11 @@ class DirModifier :
         while test < 10:
             nls.write("This is a test\n")
             test = test + 1
+
+        nls.write(DefaultNls.nls)
         nls.close()
+
+
 
 
     def make_file_dir(self, file_path):
