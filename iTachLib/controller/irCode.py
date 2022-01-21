@@ -12,12 +12,13 @@ class IrCode :
    
     buttonName: str
     gcCodeOne: str
-    gdCodeTwo: str
+    gdCodeTwo: str 
 
 
     def __init__(self, button, gcCodeOne):
        self.buttonName = button
        self.gcCodeOne = gcCodeOne
+       self.gdCodeTwo = None
        
 
     #sendir,1:1,1,38000,

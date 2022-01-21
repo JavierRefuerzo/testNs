@@ -18,7 +18,7 @@ class DirModifier :
     def __init__(self):
 
         # There is only one nls, so read the nls template and write the new one
-        en_us_txt = "profile/nls/en_us_test.txt"
+        en_us_txt = "profile/nls/en_uk.txt"
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         test = 0
