@@ -182,6 +182,7 @@ class Controller(udi_interface.Node):
         # update the iTach Controller with new device list
         LOGGER.info('Updating iTach Controller Device List. Number of Devices: ' + str(len(deviceList)))
         self.iTach.updateDevices(devices=deviceList)
+        LOGGER.info('iTach Controller now has' + + str(len(self.iTach.deviceList)) + ' Devices ')
         # update device nodes
         self.updateDeviceNodeList()
 
