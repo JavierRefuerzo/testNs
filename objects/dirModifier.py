@@ -24,11 +24,12 @@ class DirModifier :
         print("init ")
         self.devices = devices
         self.makeNls()
+        self.makeNodeDef()
 
     def makeNls(self):
         print("makeNls ")
         # There is only one nls, so read the nls template and write the new one
-        en_us_txt = "profile/nls/en_test.txt"
+        en_us_txt = "profile/nls/en_us.txt"
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         nls.write(DefaultNls.nls)
@@ -38,7 +39,7 @@ class DirModifier :
             print("num of codes: " + str(len(device.buttons)))
             for code in device.buttons:
                 #This should be changed to nodeAddress
-                name = self.get_valid_node_name(device.name)
+                name = self._getAddress(device)
                 command = name + "-" + str(index) + "\n"
                 nls.write(command)    
             # add double line between commands
@@ -47,16 +48,18 @@ class DirModifier :
         nls.close()
 
     def makeNodeDef(self):
-        nodeDef_xml = "profile/nodedef/devices.txt"
+        nodeDef_xml = "profile/nodedef/devices.xml"
         self.make_file_dir(nodeDef_xml)
         nodeDef = open(nodeDef_xml,  "w")
         template = NodeDefTemplate()
 
         nodeDef.write(template.prifix)
         for index, device in enumerate(self.devices):
-            nodeXml = template.getNodeDef(self.a)
+            length = len(device.buttons) - 1
+            name = self._getAddress(device)
+            nodeXml = template.getNodeDef(name, length)
             print("device: " + device.name)
-            nodeDef.write('  <!-- Device ' + device.name + "-->\n")    
+            nodeDef.write('  <!-- Device ' + device.name + "-->")    
             nodeDef.write(nodeXml)    
 
         nodeDef.write(template.suffix)
@@ -68,7 +71,14 @@ class DirModifier :
             os.makedirs(directory)
         return True
 
-    def get_valid_node_name(self, name, max_length=14) -> str:
+    def _getAddress(self, device: Device) -> str:
+        name = device.name
+        name = name.replace(" ", "_")
+        name = name.lower()
+        name = self._get_valid_node_name(name)
+        return name
+
+    def _get_valid_node_name(self, name, max_length=14) -> str:
         offset = max_length * -1
         # Only allow utf-8 characters
         #  https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-froms-string
