@@ -57,7 +57,7 @@ class DeviceNode(udi_interface.Node):
         #Set initial values
         
         #change the station name to include stationId
-        address = self.setAddress()
+        address = self.setAddress(device=device)
 
         # Add global observer
         
