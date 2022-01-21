@@ -6,12 +6,10 @@ Copyright (C) 2021 Javier Refuerzo
 """
 
 
-from curses import nl
 import os
 from typing import List
 import re
 from constants.NodeDefTemplate import NodeDefTemplate
-
 from constants.defaultNLS import DefaultNls
 from iTachLib.controller.Device import Device
 
