@@ -149,7 +149,7 @@ class Controller(udi_interface.Node):
 #---------- Business Logic
 
     def processParameters(self, params):
-        LOGGER.info('Process Params: ' + len(params))
+        LOGGER.info('Process Params: ' + str(len(params)))
         # make sure defined params are set
         self.processDefinedParams(params)
         
