@@ -48,4 +48,4 @@ class Commands :
     #stop
 
     def __init__(self):
-        print(init)
+        print("init")

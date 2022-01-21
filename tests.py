@@ -9,8 +9,6 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from typing import List
-from iTachLib.controller.codeSetParser import CodeSetParser
-from iTachLib.tests.codeSet import CodeSet
 from objects.dirModifier import DirModifier
 from iTachLib.controller.Device import Device
 from iTachLib.controller.irCode import IrCode
@@ -26,6 +24,8 @@ from iTachLib.controller.irCode import IrCode
 
 #parser.parse(data)
 #StationTests(creds)
+
+print("Started")
 
 irCode1 = IrCode("Test Button1", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
 irCode2 = IrCode("Test Button2", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")

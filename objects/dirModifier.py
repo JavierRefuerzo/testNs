@@ -9,6 +9,8 @@ Copyright (C) 2021 Javier Refuerzo
 from curses import nl
 import os
 from typing import List
+import re
+from constants.NodeDefTemplate import NodeDefTemplate
 
 from constants.defaultNLS import DefaultNls
 from iTachLib.controller.Device import Device
@@ -19,17 +21,21 @@ class DirModifier :
     devices: List[Device]
 
     def __init__(self, devices: List[Device]):
+        print("init ")
         self.devices = devices
         self.makeNls()
 
     def makeNls(self):
+        print("makeNls ")
         # There is only one nls, so read the nls template and write the new one
         en_us_txt = "profile/nls/en_test.txt"
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         nls.write(DefaultNls.nls)
         for index, device in enumerate(self.devices):
+            print("device: " + device.name)
             nls.write("#Device - " + device.name + "\n")    
+            print("num of codes: " + str(len(device.buttons)))
             for code in device.buttons:
                 #This should be changed to nodeAddress
                 name = self.get_valid_node_name(device.name)
@@ -40,6 +46,21 @@ class DirModifier :
 
         nls.close()
 
+    def makeNodeDef(self):
+        nodeDef_xml = "profile/nodedef/devices.txt"
+        self.make_file_dir(nodeDef_xml)
+        nodeDef = open(nodeDef_xml,  "w")
+        template = NodeDefTemplate()
+
+        nodeDef.write(template.prifix)
+        for index, device in enumerate(self.devices):
+            nodeXml = template.getNodeDef(self.a)
+            print("device: " + device.name)
+            nodeDef.write('  <!-- Device ' + device.name + "-->\n")    
+            nodeDef.write(nodeXml)    
+
+        nodeDef.write(template.suffix)
+        nodeDef.close()
 
     def make_file_dir(self, file_path):
         directory = os.path.dirname(file_path)

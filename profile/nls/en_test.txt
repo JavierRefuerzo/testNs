@@ -1,4 +1,5 @@
 
+
 #Controller
 ND-ctl-NAME = iTach IR
 ND-ctl-ICON = Output
@@ -7,8 +8,8 @@ ST-ctl-ST-NAME = NodeServer Online
 #ST-ctl-GV0-NAME = Last Error Message
 
 #irdevice
-NDN-irdevice-NAME = IR Code Set
-NDN-irdevice-ICON = Output
+ND-irdevice-NAME = IR Code Set
+ND-irdevice-ICON = Output
 ST-irdevice-ST-NAME = Last Status
 
 #Shared command names
@@ -36,5 +37,14 @@ CODE-2 = Button Code 2
 CONNECTOR-1 = Left 1
 CONNECTOR-2 = Center 2
 CONNECTOR-3 = Right 3
+    
+#Device - device One
+device one-0
+device one-0
+
+
+#Device - device Two
+device two-1
+device two-1
 
 
