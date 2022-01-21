@@ -12,7 +12,6 @@ Copyright (C) 2021 Javier Refuerzo
 class DefaultNls() :
 
     nls = '''
-
 #Controller
 ND-ctl-NAME = iTach IR
 ND-ctl-ICON = Output
@@ -21,8 +20,8 @@ ST-ctl-ST-NAME = NodeServer Online
 #ST-ctl-GV0-NAME = Last Error Message
 
 #irdevice
-ND-irdevice-NAME = IR Code Set
-ND-irdevice-ICON = Output
+NDN-irdevice-NAME = IR Code Set
+NDN-irdevice-ICON = Output
 ST-irdevice-ST-NAME = Last Status
 
 #Shared command names
