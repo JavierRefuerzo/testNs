@@ -179,7 +179,7 @@ class Controller(udi_interface.Node):
             return
 
         # update the iTach Controller with new device list
-        self.iTach.updateDevices(device=deviceList)
+        self.iTach.updateDevices(devices=deviceList)
         # update device nodes
         self.updateDeviceList()
 
