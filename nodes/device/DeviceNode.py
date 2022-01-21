@@ -7,7 +7,6 @@ MIT License
 
 
 from enum import Enum
-import re
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
