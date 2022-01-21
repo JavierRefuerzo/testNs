@@ -77,7 +77,7 @@ class DeviceNode(udi_interface.Node):
         name = device.name
         name = name.replace(" ", "_")
         name = name.lower()
-        address = 'device_' +  device.name
+        address = 'device_' +  name
         return address
     
     #---------- Status Setters
