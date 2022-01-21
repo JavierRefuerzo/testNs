@@ -15,31 +15,27 @@ from constants.NodeDefTemplate import NodeDefTemplate
 from constants.defaultNLS import DefaultNls
 from iTachLib.controller.Device import Device
 
-
 class DirModifier :
-    
-    devices: List[Device]
+        
 
-    def __init__(self, devices: List[Device]):
-        print("init ")
-        self.devices = devices
-        self.makeNls()
-        self.makeNodeDef()
+    def writeFiles(self, devices: List[Device]):
+        self.makeNls(devices)
+        self.makeNodeDef(devices)
 
-    def makeNls(self):
+    def makeNls(self, devices: List[Device]):
         print("makeNls ")
         # There is only one nls, so read the nls template and write the new one
         en_us_txt = "profile/nls/en_us.txt"
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         nls.write(DefaultNls.nls)
-        for index, device in enumerate(self.devices):
+        for index, device in enumerate(devices):
             print("device: " + device.name)
             nls.write("#Device - " + device.name + "\n")    
             print("num of codes: " + str(len(device.buttons)))
             for code in device.buttons:
                 #This should be changed to nodeAddress
-                name = self._getAddress(device)
+                name = self.getAddress(device)
                 command = name + "-" + str(index) + "\n"
                 nls.write(command)    
             # add double line between commands
@@ -47,16 +43,16 @@ class DirModifier :
 
         nls.close()
 
-    def makeNodeDef(self):
+    def makeNodeDef(self, devices: List[Device]):
         nodeDef_xml = "profile/nodedef/devices.xml"
         self.make_file_dir(nodeDef_xml)
         nodeDef = open(nodeDef_xml,  "w")
         template = NodeDefTemplate()
 
         nodeDef.write(template.prifix)
-        for index, device in enumerate(self.devices):
+        for index, device in enumerate(devices):
             length = len(device.buttons) - 1
-            name = self._getAddress(device)
+            name = self.getAddress(device)
             nodeXml = template.getNodeDef(name, length)
             print("device: " + device.name)
             nodeDef.write('  <!-- Device ' + device.name + "-->")    
@@ -71,15 +67,15 @@ class DirModifier :
             os.makedirs(directory)
         return True
 
-    def _getAddress(self, device: Device) -> str:
+    def getAddress(self, device: Device) -> str:
         name = device.name
         name = name.replace(" ", "_")
         name = name.lower()
-        name = self._get_valid_node_name(name)
+        name = self.get_valid_node_name(name)
         return name
 
-    
-    def _get_valid_node_name(self, name, max_length=14) -> str:
+
+    def get_valid_node_name(self, name, max_length=14) -> str:
         offset = max_length * -1
         # Only allow utf-8 characters
         name = bytes(name, 'utf-8').decode('utf-8','ignore')
