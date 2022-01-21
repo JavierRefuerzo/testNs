@@ -158,6 +158,7 @@ class Controller(udi_interface.Node):
 
         # process ir codes for each param
         for param in params:
+            LOGGER.info('Process Param: ' + param)
             # det not try to parse defined param
             enum = Params.get(value=param)
             if enum != None:
