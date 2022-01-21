@@ -85,7 +85,7 @@ class DeviceNode(udi_interface.Node):
         return name
 
     # Removes invalid charaters for ISY Node description
-    def get_valid_node_name(name,max_length=14) -> str:
+    def get_valid_node_name(self, name, max_length=14) -> str:
         offset = max_length * -1
         # Only allow utf-8 characters
         #  https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-froms-string
