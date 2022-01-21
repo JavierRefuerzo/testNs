@@ -29,8 +29,8 @@ Controller
 class Controller(udi_interface.Node):
     # Node Definitions
     id = 'ctl'
-    address='opensprinkler' 
-    name='OpenSprinkler'
+    address='iTach_IR' 
+    name='iTach IR'
 
     # Status Drivers
     drivers = [
@@ -149,6 +149,7 @@ class Controller(udi_interface.Node):
 #---------- Business Logic
 
     def processParameters(self, params):
+        LOGGER.info('Process Params')
         # make sure defined params are set
         self.processDefinedParams(params)
         
@@ -160,11 +161,14 @@ class Controller(udi_interface.Node):
             # det not try to parse defined param
             enum = Params.get(value=param)
             if enum != None:
+                LOGGER.info('Defined Param: ' + param)
                 return
 
             # This is a button code
+            LOGGER.info('Device Param: ' + param)
             device = self.getDevice(params, param)
             if device == None:
+                LOGGER.info('Could not get Device: ' + param)
                 return
             deviceList.append(device)
 
@@ -182,13 +186,14 @@ class Controller(udi_interface.Node):
         #get url
         url = params[Params.url.value]
         if self.iTach == None:
+            LOGGER.info('Creating iTach Controller')
             self.iTach = ITach(address=url, errorObserver=self.setError)
         else:
+            LOGGER.info('Updating iTach URL')
             self.iTach.address = url
 
 
     def getDevice(self, params, param) -> Device :
-        LOGGER.info("Value is: " + params[param])
         try:
             parser = CodeSetParser(params[param])
             codeSet = parser.codeSet
