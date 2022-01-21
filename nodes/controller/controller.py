@@ -163,18 +163,19 @@ class Controller(udi_interface.Node):
             enum = Params.get(value=param)
             if enum != None:
                 LOGGER.info('Defined Param: ' + param)
-                return
+                continue
 
             # This is a button code
             LOGGER.info('Device Param: ' + param)
             device = self.getDevice(params, param)
             if device == None:
                 LOGGER.info('Could not get Device: ' + param)
-                return
+                continue
             deviceList.append(device)
 
         #check that the controller is not null
         if self.iTach == None:
+            LOGGER.info('iTach Controller NOT set: ')
             return
 
         # update the iTach Controller with new device list
