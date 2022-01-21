@@ -5,7 +5,9 @@ Copyright (C) 2021 Javier Refuerzo
 MIT License
 """
 
+
 from enum import Enum
+import re
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
@@ -37,7 +39,7 @@ class DeviceNode(udi_interface.Node):
     #------------- Status Drivers
     # Status Drivers
     drivers = [
-            {'driver': "ST", 'value': 1, 'uom': 2}
+            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2}
             ]
 
     
@@ -63,11 +65,11 @@ class DeviceNode(udi_interface.Node):
         
 
         # Add this node to ISY
-        super(DeviceNode, self).__init__(polyglot, "test", "test", device.name)
+        super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, device.name)
         self.poly.addNode(self)
 
         LOGGER.info('update station status')
-        self.setDriver("ST", 1, True, True)
+        self.setDriver(Drivers.status.value, StatusValues.true.value, True, True)
         # subscribe to the events we want
         
 
@@ -79,8 +81,19 @@ class DeviceNode(udi_interface.Node):
         name = device.name
         name = name.replace(" ", "_")
         name = name.lower()
-        address = 'device_' +  name
-        return address
+        name = self.get_valid_node_name(name)
+        return name
+
+    # Removes invalid charaters for ISY Node description
+    def get_valid_node_name(name,max_length=14) -> str:
+        offset = max_length * -1
+        # Only allow utf-8 characters
+        #  https://stackoverflow.com/questions/26541968/delete-every-non-utf-8-symbols-froms-string
+        name = bytes(name, 'utf-8').decode('utf-8','ignore')
+        # Remove <>`~!@#$%^&*(){}[]?/\;:"'` characters from name
+        sname = re.sub(r"[<>`~!@#$%^&*(){}[\]?/\\;:\"']+", "", name)
+        # And return last part of name of over max_length
+        return sname[offset:].lower()
     
     #---------- Status Setters
    

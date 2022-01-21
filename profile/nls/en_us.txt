@@ -8,9 +8,9 @@ ST-ctl-ST-NAME = NodeServer Online
 #ST-ctl-GV0-NAME = Last Error Message
 
 #irdevice
-ND-irdevice-Name = IR Code Set
-ND-irdevice-ICON = Output
-ST-irdevice-ST-NAME = "Last Status"
+ND-device-Name = IR Code Set
+ND-device-ICON = Output
+ST-device-ST-NAME = "Last Status"
 
 #Shared command names
 
@@ -19,7 +19,7 @@ CMD-COMMAND-NAME = Send IR
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector
-CMDP-REPETE-NAME = Repete
+CMDP-REPETE-NAME = Repeat
 
 
 ERRORS-0 = None
@@ -34,8 +34,8 @@ ERRORS-6 = OpenSprinkler Firmware Update Required (min 2.1.9)
 CODE-1 = Button Code 1
 CODE-2 = Button Code 2
 
-CONNECTOR-1 = Left
-CONNECTOR-2 = Center
-CONNECTOR-3 = Right
+CONNECTOR-1 = Left 1
+CONNECTOR-2 = Center 2
+CONNECTOR-3 = Right 3
 
 
