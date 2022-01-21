@@ -5,13 +5,15 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-import re
+from msilib.schema import ODBCAttribute
+import udi_interface
 from typing import Callable, List
 from iTachLib.controller.irCode import IrCode
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
 from iTachLib.controller.Device import Device
 
+LOGGER = udi_interface.LOGGER
 
 
 class Controller :
@@ -51,16 +53,18 @@ class Controller :
 
     # should be called after all data is parsed into a List of Devices
     def updateDevices(self, devices: List[Device]):
-
+        LOGGER.info("update Devices")
         # update the device list to ensure the device is listed
         # there may be multiple items for the same device in device list
         # so do NOT just replace the values
         for newDevice in devices:
             device = self._getDevice(newDevice)
             if device != None:
+                LOGGER.info("update existing Device: " + device.name)
                 #the device exists so update values
                 device.updateButtons(newIrCodeList=newDevice.buttons)
             else:
+                LOGGER.info("Adding New Device: " + newDevice.name)
                 # the device does not exist so add to list
                 devices.append(newDevice)
        
@@ -70,6 +74,7 @@ class Controller :
 
     #removes any device not in new device list
     def _cleanDeviceList(self, newDeviceList: List[Device]):
+        LOGGER.info("clean Device List")
         # check if the device already exists
         removalList: List[Device] = []
         for oldDevice in self.deviceList:
@@ -80,20 +85,24 @@ class Controller :
                     break
             if not exists:
                 removalList.append(oldDevice)
-                
+
         #remove devices
         for device in removalList:
+            LOGGER.info("removing Device: " + device.name)
             # notify observes of removal
             device.willRemoveDevice()
             self.deviceList.remove(device)
 
 
     def _getDevice(self, newDevice: Device) -> Device:
+        LOGGER.info("Get Device")
         # check if the device already exists
         for oldDevice in self.deviceList:
             if newDevice.name == oldDevice.name:
+                LOGGER.info("Device Found: " + oldDevice.name)
                 return oldDevice
         #the device does not exist
+        LOGGER.info("device not found")
         return None
     
     # ---- Command functions
