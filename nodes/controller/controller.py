@@ -13,7 +13,7 @@ from nodes.controller.drivers import Drivers
 from nodes.controller.drivers import StatusValues
 from nodes.controller.drivers import ErrorValues
 from nodes.device.DeviceNode import DeviceNode
-from objects.dirModifier import DirModifier
+from objects.DirModifier import DirModifier
 from objects.errors import Errors
 from iTachLib.controller.controller import Controller as ITach
 from objects.polyglotObserver import PolyglotObserver
