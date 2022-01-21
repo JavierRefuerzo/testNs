@@ -5,10 +5,8 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-from msilib.schema import ODBCAttribute
 import udi_interface
 from typing import Callable, List
-from iTachLib.controller.irCode import IrCode
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
 from iTachLib.controller.Device import Device
