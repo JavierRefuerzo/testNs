@@ -74,7 +74,10 @@ class DeviceNode(udi_interface.Node):
 
     def setAddress(self, device: Device) -> str:
         LOGGER.info('set address')
-        address = 'device_' +  self.device.name
+        name = device.name
+        name = name.replace(" ", "_")
+        name = name.lower()
+        address = 'device_' +  device.name
         return address
     
     #---------- Status Setters

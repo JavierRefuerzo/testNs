@@ -29,7 +29,7 @@ Controller
 class Controller(udi_interface.Node):
     # Node Definitions
     id = 'ctl'
-    address='iTach_IR' 
+    address='itachir' 
     name='iTach IR'
 
     # Status Drivers
