@@ -41,5 +41,6 @@ deviceList: List[Device] = []
 deviceList.append(device1)
 deviceList.append(device2)
 
-mod = DirModifier(devices=deviceList)
+mod = DirModifier()
+mod.writeFiles(deviceList)
 print("Finished")

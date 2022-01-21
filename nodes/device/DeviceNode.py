@@ -11,6 +11,7 @@ import re
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
+from objects.dirModifier import DirModifier
 from objects.polyglotObserver import PolyglotObserver
 
 
@@ -59,6 +60,7 @@ class DeviceNode(udi_interface.Node):
         #Set initial values
         
         #change the station name to include stationId
+        modifier = DirModifier()
         self.address = self.setAddress(device=device)
 
         # Add global observer
