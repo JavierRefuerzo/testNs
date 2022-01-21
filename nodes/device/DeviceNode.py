@@ -37,7 +37,7 @@ class DeviceNode(udi_interface.Node):
     #------------- Status Drivers
     # Status Drivers
     drivers = [
-            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2}
+            {'driver': "ST", 'value': 1, 'uom': 2}
             ]
 
     
@@ -63,11 +63,11 @@ class DeviceNode(udi_interface.Node):
         
 
         # Add this node to ISY
-        super(DeviceNode, self).__init__(polyglot, self.address, self.address, device.name)
+        super(DeviceNode, self).__init__(polyglot, "test", "test", device.name)
         self.poly.addNode(self)
 
         LOGGER.info('update station status')
-        self.setDriver(Drivers.status.value, StatusValues.true.value, True, True)
+        self.setDriver("ST", 1, True, True)
         # subscribe to the events we want
         
 
