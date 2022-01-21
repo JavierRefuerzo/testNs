@@ -1,6 +1,5 @@
 
-#####Controller
-
+#Controller
 ND-ctl-NAME = iTach IR
 ND-ctl-ICON = Output
 

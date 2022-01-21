@@ -11,7 +11,7 @@ import re
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
-from nodes.observers.polyglotObserver import PolyglotObserver
+from objects.polyglotObserver import PolyglotObserver
 
 
 

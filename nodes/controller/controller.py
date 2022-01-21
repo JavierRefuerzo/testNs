@@ -15,7 +15,7 @@ from nodes.controller.drivers import ErrorValues
 from nodes.device.DeviceNode import DeviceNode
 from objects.errors import Errors
 from iTachLib.controller.controller import Controller as ITach
-from nodes.observers.polyglotObserver import PolyglotObserver
+from objects.polyglotObserver import PolyglotObserver
 from constants.params import Params
 
 LOGGER = udi_interface.LOGGER
