@@ -31,3 +31,6 @@
 2022-01-21 13:58:32,958 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
 2022-01-21 13:58:33,376 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
 2022-01-21 13:58:33,404 MainThread udi_interface      DEBUG    udi_interface:write: Finished
+2022-01-21 14:14:41,359 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-21 14:14:41,881 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-21 14:14:41,919 MainThread udi_interface      DEBUG    udi_interface:write: Finished

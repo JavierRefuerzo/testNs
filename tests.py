@@ -7,9 +7,13 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 
+
+from typing import List
 from iTachLib.controller.codeSetParser import CodeSetParser
 from iTachLib.tests.codeSet import CodeSet
 from objects.dirModifier import DirModifier
+from iTachLib.controller.Device import Device
+from iTachLib.controller.irCode import IrCode
 
 
 #codeSet = CodeSet()
@@ -23,5 +27,19 @@ from objects.dirModifier import DirModifier
 #parser.parse(data)
 #StationTests(creds)
 
-mod = DirModifier(devices=None)
+irCode1 = IrCode("Test Button1", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
+irCode2 = IrCode("Test Button2", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
+
+irList: List[IrCode] = []
+irList.append(irCode1)
+irList.append(irCode2)
+
+device1 = Device("device One", irList)
+device2 = Device("device Two", irList)
+
+deviceList: List[Device] = []
+deviceList.append(device1)
+deviceList.append(device2)
+
+mod = DirModifier(devices=deviceList)
 print("Finished")
