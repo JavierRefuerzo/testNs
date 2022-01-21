@@ -8,9 +8,9 @@ ST-ctl-ST-NAME = NodeServer Online
 #ST-ctl-GV0-NAME = Last Error Message
 
 #irdevice
-ND-device-Name = IR Code Set
-ND-device-ICON = Output
-ST-device-ST-NAME = "Last Status"
+ND-irdevice-NAME = IR Code Set
+ND-irdevice-ICON = Output
+ST-irdevice-ST-NAME = Last Status
 
 #Shared command names
 

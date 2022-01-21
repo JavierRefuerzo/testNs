@@ -13,7 +13,7 @@
   </nodeDef>
 
   <!-- The device Node-->
-  <nodeDef id="irdevice" nls="device">
+  <nodeDef id="irdevice" nls="irdevice">
     <sts>
       <st id="ST" editor="bool" />
 	  </sts>
@@ -26,8 +26,9 @@
           <p id="CONNECTOR" editor="connector" />
           <p id="REPETE" editor="repete" />
         </cmd>
-        <cmd id="STOP" />
-          <p id="" editor="connector" />
+        <cmd id="STOP">
+          <p id="CONNECTOR" editor="connector" />
+        </cmd>
       </accepts>
     </cmds>
   </nodeDef>
