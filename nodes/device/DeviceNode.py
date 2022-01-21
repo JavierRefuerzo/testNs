@@ -50,7 +50,7 @@ class DeviceNode(udi_interface.Node):
 
 
     def __init__(self, polyglot, parentAddress: str, device: Device, polyObserver:PolyglotObserver):
-        LOGGER.info(' init')
+        LOGGER.info(' init, parent: ')
         self.poly = polyglot
         self.device = device
 
@@ -63,9 +63,11 @@ class DeviceNode(udi_interface.Node):
         
 
         # Add this node to ISY
-        super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, device.name)
+        super(DeviceNode, self).__init__(polyglot, self.address, self.address, device.name)
         self.poly.addNode(self)
 
+        LOGGER.info('update station status')
+        self.setDriver(Drivers.status.value, StatusValues.true.value, True, True)
         # subscribe to the events we want
         
 
