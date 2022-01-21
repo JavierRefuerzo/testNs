@@ -10,7 +10,7 @@ from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
 from nodes.observers.polyglotObserver import PolyglotObserver
-from constants.params import Params as customParms
+
 
 
 LOGGER = udi_interface.LOGGER
@@ -57,13 +57,13 @@ class DeviceNode(udi_interface.Node):
         #Set initial values
         
         #change the station name to include stationId
-        address = self.setAddress(device=device)
+        self.address = self.setAddress(device=device)
 
         # Add global observer
         
 
         # Add this node to ISY
-        super(DeviceNode, self).__init__(polyglot, parentAddress, address, device)
+        super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, device.name)
         self.poly.addNode(self)
 
         # subscribe to the events we want
@@ -74,8 +74,8 @@ class DeviceNode(udi_interface.Node):
 
     def setAddress(self, device: Device) -> str:
         LOGGER.info('set address')
-        self.address = 'device_' +  self.device.name
-        return self.address
+        address = 'device_' +  self.device.name
+        return address
     
     #---------- Status Setters
    
