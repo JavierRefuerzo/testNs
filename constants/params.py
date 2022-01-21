@@ -12,9 +12,7 @@ from typing import List
 
 class Params(Enum) :
     #These values are also hard coded into server.json
-    password = "password"
     url = "url"
-    manualRunTimeSeconds = "manualRunTimeSeconds"
 
     
     def get(value: str):

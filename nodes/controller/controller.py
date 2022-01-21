@@ -4,18 +4,19 @@ Polyglot v3 node server OpenSprinkler
 Copyright (C) 2021 Javier Refuerzo
 
 """
-import json
+from os import name
 import udi_interface
 from typing import Callable, List, final
+from iTachLib.controller.Device import Device
 from iTachLib.controller.codeSetParser import CodeSetParser
 from nodes.controller.drivers import Drivers
 from nodes.controller.drivers import StatusValues
 from nodes.controller.drivers import ErrorValues
+from nodes.device.DeviceNode import DeviceNode
 from objects.errors import Errors
-from iTachLib.controller.controller import Controller as OpenSprinkler
+from iTachLib.controller.controller import Controller as ITach
 from nodes.observers.polyglotObserver import PolyglotObserver
 from constants.params import Params
-from iTachLib.controller.irCode import IrCode
 
 LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
@@ -34,20 +35,13 @@ class Controller(udi_interface.Node):
     # Status Drivers
     drivers = [
             {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2},
-            {'driver': Drivers.error.value, 'value': ErrorValues.none.value, 'uom': 25},
-            {'driver': Drivers.controllerEnabled.value, 'value': StatusValues.false.value, 'uom': 2},
-            {'driver': Drivers.rainDelay.value, 'value': StatusValues.false.value, 'uom': 2},
-            {'driver': Drivers.sensor1.value, 'value': StatusValues.false.value, 'uom': 2},
-            {'driver': Drivers.sensor2.value, 'value': StatusValues.false.value, 'uom': 2},
-            {'driver': Drivers.runningProgram.value, 'value': 0, 'uom': 25},
             ]
     
 
     # Data
-    openSprinkler: OpenSprinkler = None
+    iTach: ITach = None
+    deviceNodeList: List[DeviceNode]
     errorCode: int = ErrorValues.none.value
-    customParamsHandlers: List[Callable] = []
-    currentProgram: int = None
 
     # Nodes/Node Holders
 
@@ -61,11 +55,13 @@ class Controller(udi_interface.Node):
         
         self.poly = polyglot
         self.polyObserver = PolyglotObserver(self.poly)
+        self.deviceNodeList = []
 
         #set custom params
         self.Parameters = Custom(polyglot, 'customparams')
 
         #Set initaial status 
+        #self.deviceList = []
         self.setStatus(statusEnum=StatusValues.true)
 
         # start processing events and create or add our controller node
@@ -73,8 +69,6 @@ class Controller(udi_interface.Node):
         
         # Add this node to ISY
         self.poly.addNode(self)
-
-        #Create objects which hold child nodes
 
 
         # subscribe to the events we want
@@ -91,30 +85,6 @@ class Controller(udi_interface.Node):
 
     def setStatus(self, statusEnum: StatusValues):
         self.setDriver(Drivers.status.value, statusEnum.value, True, True)
-
-    def setControllerEnabled(self, value: int):
-        self.setDriver(Drivers.controllerEnabled.value, value, True, True)
-
-    def setRainDelayDriver(self, value: int):
-        self.setDriver(Drivers.rainDelay.value, value, True, True)
-
-    def setSensorOneDriver(self, value: int):
-        self.setDriver(Drivers.sensor1.value, value, True, True)
-    
-    def setSensorTwoDriver(self, value: int):
-        self.setDriver(Drivers.sensor2.value, value, True, True)
-
-    def setRunningProgramDriver(self, value: List[List[int]]):
-        final = 0
-        for station in value:
-            program = station[0]
-            if program > final:
-                final = program
-        #only set the value if it has changed
-        if self.currentProgram != None and self.currentProgram == final:
-            return
-        self.currentProgram = final
-        self.setDriver(Drivers.runningProgram.value, final, True, True)
 
     def setError(self, error: Errors):
         #only update error code if it has changed
@@ -158,8 +128,7 @@ class Controller(udi_interface.Node):
     def parameterHandler(self, params):
         self.Parameters.load(params)
         LOGGER.info('GET Custom params TEST ' + str(self.Parameters))
-        self.getCodeSet(params=params)
-        #self.polyObserver.updateCustomParam(params)
+        self.processParameters(params=params)
 
     def poll(self, polltype):
         if 'shortPoll' in polltype:
@@ -173,57 +142,107 @@ class Controller(udi_interface.Node):
     
 
     #Set Command Observers
-    commands = {
-           
-        }
+    commands = {}
 
 
    
 #---------- Business Logic
 
-    def getCodeSet(self, params):
-        LOGGER.info('makeRequest')
-        codeSet: List[IrCode] = []
+    def processParameters(self, params):
+        # make sure defined params are set
+        self.processDefinedParams(params)
+        
+        #clear the device list
+        deviceList: List[Device] = []
+
+        # process ir codes for each param
         for param in params:
-            LOGGER.info("Param is: " + str(param))
-            #do not parse type params
+            # det not try to parse defined param
             enum = Params.get(value=param)
-            LOGGER.info("enum is: " + str(enum))
             if enum != None:
-                LOGGER.info("Not parsing IR Param is: " + param)
-                continue
-            
-            #LOGGER.info("Param is: " + str(param))
-            LOGGER.info("Value is: " + params[param])
-            try:
-                parser = CodeSetParser()
-                parser.parse( params[param])
-            except Exception as e:
-                LOGGER.info("Parse Error: " + str(e))
-                continue
+                return
 
-            if len(parser.codeSet) == 0:
+            # This is a button code
+            device = self.getDevice(params, param)
+            if device == None:
+                return
+            deviceList.append(device)
+
+        #check that the controller is not null
+        if self.iTach == None:
+            return
+
+        # update the iTach Controller with new device list
+        self.iTach.updateDevices(device=deviceList)
+        # update device nodes
+        self.updateDeviceList()
+
+            
+    def processDefinedParams(self, params):
+        #get url
+        url = params[Params.url.value]
+        if self.iTach == None:
+            self.iTach = ITach(address=url, errorObserver=self.setError)
+        else:
+            self.iTach.address = url
+
+
+    def getDevice(self, params, param) -> Device :
+        LOGGER.info("Value is: " + params[param])
+        try:
+            parser = CodeSetParser(params[param])
+            codeSet = parser.codeSet
+            if len(codeSet) == 0:
                 LOGGER.info("Parse Error: code list is empty")
-                continue
-            LOGGER.info("Number of ir codes " + str(len(parser.codeSet)))
-            codeSet.extend(parser.codeSet)
-            
-        LOGGER.info("Number of ir codes " + str(len(codeSet)))
-        
+                return None
+            LOGGER.info('Number of ir codes for "'+ param  + '": ' + str(len(parser.codeSet)))
+            return Device(name=param, buttons=codeSet)
+        except Exception as e:
+            LOGGER.info("Parse Error: " + str(e))
+            return None
 
         
 
-            
+    def updateDeviceList(self):
+        if self.iTach == None:
+            return
+        # get the device list from iTach
+        devices = self.iTach.deviceList
+        for device in devices:
+            exists = False
+            for node in self.deviceNodeList:
+                if node.name == device.name:
+                    #node exists update the device i.e. ir codes
+                    node.device = device
+                    exists = True
+                    break
 
-        
-    def processParam(self, param):
-        LOGGER.info("Param is: " + str(param))
-        LOGGER.info("Value is: " + str(param.value))
-        LOGGER.info("Key is: " + str(param.key))
-        # try:
-        #     codes = CodeSetParser().parse(param)
-        # except Exception as e:
-        #     LOGGER.info("Parse Error: " + str(e))
+            if not exists:
+                #create new node
+                deviceNode = DeviceNode(self.poly, self.address, )
+                self.deviceNodeList.append(deviceNode)
 
-        # if len(codes.codeset) == 0:
-        #     LOGGER.info("Parse Error: code list is empty")
+        # All DeviceNodes should be added/updated
+        # Remove any nodes which no longer exist
+        self._cleanDeviceList(newDeviceList=devices)
+
+        #TODO Create NodeDef, NLS, etc
+
+    #removes any device not in new device list
+    def _cleanDeviceList(self, newDeviceList: List[Device]):
+        # check if the device already exists
+        removalList: List[DeviceNode] = []
+        for oldDevice in self.deviceNodeList:
+            exists = False
+            for newDevice in newDeviceList:
+                if oldDevice.device.name == newDevice.name:
+                    exists = True
+                    break
+            if not exists:
+                removalList.append(oldDevice)
+                
+        #remove devices
+        for device in removalList:
+            # TODO: remove device from ISY
+            LOGGER.info("TODO remove device: " + device.device.name)
+            self.deviceNodeList.remove(device)

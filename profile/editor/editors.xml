@@ -4,14 +4,10 @@
 		<range uom="2" subset="0,1" />
 	</editor>
 	<editor id="code">
-		<range uom="25" subset="0,1" nls="CODE"/>
+		<range uom="25" subset="1,2" nls="CODE"/>
 	</editor>
 	<editor id="connector">
-		<range uom="25" subset="0,1,3" nls="CONNECTOR" />
-	</editor>
-	<!-- this should be an encoded editor to prevent rewirtes of ditor file-->
-	<editor id="device">
-		<range uom="25" min="0" max="32767" prec="0"/>
+		<range uom="25" subset="1,2,3" nls="CONNECTOR" />
 	</editor>
 	<editor id="errors">
 		<range uom="25" min="0" max="6" prec="0" nls="ERRORS" /> 

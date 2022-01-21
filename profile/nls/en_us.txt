@@ -9,7 +9,6 @@ ST-ctl-GV0-NAME = Last Error Message
 
 CMD-ctl-STOP-NAME = Stop IR
 CMD-ctl-COMMAND-NAME = Send IR
-CMDP-DEVICE-NAME = Device
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector

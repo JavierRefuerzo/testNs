@@ -12,6 +12,7 @@ import email
 import json
 from typing import List
 import udi_interface
+from iTachLib.controller.Device import Device
 LOGGER = udi_interface.LOGGER
 
 
@@ -20,15 +21,14 @@ from iTachLib.controller.irCode import IrCode
 
 class CodeSetParser:
 
-    device: str
     codeSet: List[IrCode]
 
-    def __init__(self, device: str = "Unknwn"):
+    def __init__(self, data: str):
         print("CodeSetParser init")
         self.codeSet = []
-        self.device = device
+        self._parse(data)
 
-    def parse(self, data: str):
+    def _parse(self, data: str):
         print ("parsing started")
 
         #This splits the ir codes from the email data
@@ -97,3 +97,4 @@ class CodeSetParser:
             # except Exception as e:
             #     print(e)
             #     continue
+        

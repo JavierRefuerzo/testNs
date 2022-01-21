@@ -8,8 +8,19 @@
     <cmds>
       <sends />
       <accepts>
+      </accepts>
+    </cmds>
+  </nodeDef>
+
+  <!-- The device Node-->
+  <nodeDef id="device" nls="device">
+    <sts>
+      <st id="ST" editor="bool" />
+	  </sts>
+    <cmds>
+      <sends />
+      <accepts>
         <cmd id="COMMAND">
-          <p id="DEVICE" editor="device" />
           <p id="BUTTON" editor="button" />
           <p id="CODE" editor="code" />
           <p id="CONNECTOR" editor="connector" />
@@ -20,8 +31,6 @@
       </accepts>
     </cmds>
   </nodeDef>
-
-
 
  
 

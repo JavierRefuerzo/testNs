@@ -10,13 +10,13 @@ Copyright (C) 2021 Javier Refuerzo
 class IrCode :
     
    
-    button: str
+    buttonName: str
     gcCodeOne: str
     gdCodeTwo: str
-    
+
 
     def __init__(self, button, gcCodeOne):
-       self.button = button
+       self.buttonName = button
        self.gcCodeOne = gcCodeOne
        
 

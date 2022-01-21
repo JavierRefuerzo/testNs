@@ -10,12 +10,6 @@ from enum import Enum
 #enum for drivers
 class Drivers(Enum):
     status = "ST"
-    error = "GV0"
-    controllerEnabled = "GV1"
-    rainDelay = "GV2"
-    sensor1 = "GV3"
-    sensor2 = "GV4"
-    runningProgram = "GV5"
 
 #enum for status values
 class StatusValues(Enum):
