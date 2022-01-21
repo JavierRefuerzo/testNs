@@ -64,7 +64,7 @@ class Controller :
             else:
                 LOGGER.info("Adding New Device: " + newDevice.name)
                 # the device does not exist so add to list
-                devices.append(newDevice)
+                self.deviceList.append(newDevice)
        
         # all values should now be updated, so remove any that are not in the list
         self._cleanDeviceList(newDeviceList=devices)
