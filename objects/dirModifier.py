@@ -6,10 +6,28 @@ Copyright (C) 2021 Javier Refuerzo
 """
 
 
+from curses import nl
+import os
+
+
 class DirModifier :
-    text: str = "Unknown Error"
-    code: int = 500
+    
 
     def __init__(self):
-        self.text = text
-        self.code = code
+
+        # There is only one nls, so read the nls template and write the new one
+        en_us_txt = "profile/nls/en_us_test.txt"
+        self.make_file_dir(en_us_txt)
+        nls = open(en_us_txt,  "w")
+        test = 0
+        while test < 10:
+            nls.write("This is a test\n")
+            test = test + 1
+        nls.close()
+
+
+    def make_file_dir(self, file_path):
+        directory = os.path.dirname(file_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        return True

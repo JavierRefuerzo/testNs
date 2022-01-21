@@ -9,15 +9,18 @@ Copyright (C) 2021 Javier Refuerzo
 
 from iTachLib.controller.codeSetParser import CodeSetParser
 from iTachLib.tests.codeSet import CodeSet
+from objects.dirModifier import DirModifier
 
 
-codeSet = CodeSet()
+#codeSet = CodeSet()
 
 # data = codeSet.getCodeSet()
 #THIS MAY NOT WORK WITH UDI LOGGING ENABLED IN PARSER
-data = codeSet.getParmSet()
+#data = codeSet.getParmSet()
 
-parser = CodeSetParser()
+#parser = CodeSetParser()
 
-parser.parse(data)
+#parser.parse(data)
 #StationTests(creds)
+
+mod = DirModifier()
