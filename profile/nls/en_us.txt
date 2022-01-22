@@ -18,7 +18,7 @@ CMD-COMMAND-NAME = Send IR
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector
-CMDP-REPETE-NAME = Repeat
+CMDP-REPEAT-NAME = Repeat
 
 
 ERRORS-0 = None
@@ -37,15 +37,6 @@ CONNECTOR-1 = Left 1
 CONNECTOR-2 = Center 2
 CONNECTOR-3 = Right 3
     
-#Device - device One
-ND-device_one-NAME = IR Code Set
-device_one-0 = POWER TOGGLE
-device_one-1 = Test Button2
 
-
-#Device - device Two
-ND-device_two-NAME = IR Code Set
-device_two-0 = POWER TOGGLE
-device_two-1 = Test Button2
 
 

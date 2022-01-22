@@ -31,7 +31,7 @@ CMD-COMMAND-NAME = Send IR
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector
-CMDP-REPETE-NAME = Repeat
+CMDP-REPEAT-NAME = Repeat
 
 
 ERRORS-0 = None
