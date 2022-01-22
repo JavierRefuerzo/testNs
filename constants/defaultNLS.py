@@ -18,7 +18,7 @@ ND-ctl-ICON = Output
 
 ST-ctl-ST-NAME = NodeServer Online
 ST-ctl-GV0-NAME = Module address
-ST-ctr-GV1-NAME = Module Type
+ST-ctl-GV1-NAME = Module Type
 
 #irdevice
 NDN-irdevice-NAME = IR Code Set

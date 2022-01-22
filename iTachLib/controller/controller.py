@@ -40,10 +40,14 @@ class Controller :
         #return if there is no observer
         if self.observers != None:  
             self.observers.iTachError.updateOnChange(error)
+            return
+        LOGGER.info("Observer Not Set")
     
     def _setModuleTypeObserver(self, value: int):
-         if self.observers != None:
+        if self.observers != None:
             self.observers.moduleType.update(value)
+            return
+        LOGGER.info("Observer Not Set")
 
     # ------ Setters
 
@@ -105,7 +109,7 @@ class Controller :
 
     def send_command(self, command) -> str:
         byte_size=4096
-        timeout=10
+        timeout=3
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         command = command + "\r"

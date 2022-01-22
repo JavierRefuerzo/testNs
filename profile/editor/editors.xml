@@ -7,13 +7,16 @@
 		<range uom="25" subset="1,2" nls="CODE"/>
 	</editor>
 	<editor id="moduleAddress">
-		<range uom="56" subset="1,2"/>
+		<range uom="56" subset="0,1"/>
 	</editor>
 	<editor id="connector">
 		<range uom="25" subset="1,2,3" nls="CONNECTOR" />
 	</editor>
 	<editor id="errors">
 		<range uom="25" min="-2" max="27" prec="0" nls="ERRORS" /> 
+	</editor>
+	<editor id="moduleType">
+		<range uom="25" min="0" max="5" prec="0" nls="MODULETYPE" /> 
 	</editor>
 	<editor id="repeat">
 		<range uom="56" min="1" max="50" prec="0" /> 

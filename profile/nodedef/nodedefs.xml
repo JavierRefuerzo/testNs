@@ -4,8 +4,8 @@
   <nodeDef id="ctl" nls="ctl">
     <sts>
       <st id="ST" editor="bool" />
-      <st id="GV0" editor="bool" />
-      <st id="GV1" editor="bool" />
+      <st id="GV0" editor="moduleAddress" />
+      <st id="GV1" editor="moduleType" />
 	  </sts>
     <cmds>
       <sends />
