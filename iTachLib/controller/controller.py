@@ -133,6 +133,8 @@ class Controller :
             return ErrorValues.connection.value
         if "completeir" in response:
             return ErrorValues.none.value
+        if "stopir" in response:
+            return ErrorValues.none.value
         if "ERR_" not in response:
             return ErrorValues.unknown.value
         # Looking for this ERR_0:0,001 
