@@ -7,7 +7,7 @@ ST-ctl-ST-NAME = NodeServer Online
 #ST-ctl-GV0-NAME = Last Error Message
 
 #irdevice
-ND-irdevice-NAME = IR Code Set
+NDN-irdevice-NAME = IR Code Set
 NDN-irdevice-ICON = Output
 ST-irdevice-ST-NAME = Last Status
 
@@ -18,7 +18,7 @@ CMD-COMMAND-NAME = Send IR
 CMDP-BUTTON-NAME = Button Name
 CMDP-CODE-NAME = Alternate Codes
 CMDP-CONNECTOR-NAME = Connector
-CMDP-REPEAT-NAME = Repeat
+CMDP-REPETE-NAME = Repeat
 
 
 ERRORS-0 = None
@@ -36,4 +36,16 @@ CODE-2 = Button Code 2
 CONNECTOR-1 = Left 1
 CONNECTOR-2 = Center 2
 CONNECTOR-3 = Right 3
+    
+#Device - device One
+ND-device_one-NAME = IR Code Set
+device_one-0 = Test Button1
+device_one-1 = Test Button2
+
+
+#Device - device Two
+ND-device_two-NAME = IR Code Set
+device_two-0 = Test Button1
+device_two-1 = Test Button2
+
 

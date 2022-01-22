@@ -30,15 +30,15 @@ class IrCode :
         
         # get button code
         code = self.gcCodeOne
-        if buttonCode == 2:
+        if buttonCode == 2 and self.gdCodeTwo != None:
             code = self.gdCodeTwo
         
         # split ir code for edit
         split = code.split(",")
         # set the connector
-        connector = split[1]
-        connectorSplit = connector.split(":")
-        connector = connectorSplit + ":" + str(connector)
+        orgConnector = split[1]
+        connectorSplit = orgConnector.split(":")
+        connector = connectorSplit[0] + ":" + str(connector)
         split[1] = connector
         # set repeat
         split[4] = str(repeat)
