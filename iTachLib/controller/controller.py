@@ -5,7 +5,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-#import udi_interface
+import udi_interface
 from typing import Callable, List
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
