@@ -39,13 +39,13 @@ CONNECTOR-3 = Right 3
     
 #Device - device One
 ND-device_one-NAME = IR Code Set
-device_one-0 = Test Button1
+device_one-0 = POWER TOGGLE
 device_one-1 = Test Button2
 
 
 #Device - device Two
 ND-device_two-NAME = IR Code Set
-device_two-0 = Test Button1
+device_two-0 = POWER TOGGLE
 device_two-1 = Test Button2
 
 

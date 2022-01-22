@@ -112,15 +112,18 @@ class Controller :
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         command = command + "\r"
+        respons: any = None
         try:
             sock.connect((self.address, 4998))
             command = command.encode()
             sock.sendall(command)
             response = self.format_message(sock.recv(byte_size))
-            print("Sent: " + command)
+            print("Sent: " + str(command))
             print("Received: " + response)
+            LOGGER.info("RECEIVED: " + response)
         except socket.error as error:
             print(repr(error))
+            LOGGER.info("ERROR: " + str(error))
         finally:
             sock.close()
 

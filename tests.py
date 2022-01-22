@@ -8,10 +8,12 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 
+from email.headerregistry import Address
 from typing import List
 from objects.DocumentModifier import DocumentModifier
 from iTachLib.controller.Device import Device
 from iTachLib.controller.irCode import IrCode
+from iTachLib.controller.controller import Controller as ITACH
 
 
 #codeSet = CodeSet()
@@ -27,10 +29,14 @@ from iTachLib.controller.irCode import IrCode
 
 print("Started")
 
-irCode1 = IrCode("Test Button1", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
+irCode1 = IrCode("POWER TOGGLE", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,21,21,21,21,63,21,21,21,21,21,21,21,21,21,21,21,63,21,63,21,21,21,63,21,63,21,63,21,63,21,63,21,1466,339,84,21,3633")
 irCode2 = IrCode("Test Button2", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
 
-irCode1.command(buttonCode=2, connector=3, repeat=5)
+command = irCode1.command(buttonCode=1, connector=1, repeat=1)
+iTach = ITACH(address="192.168.1.70", errorObserver=None)
+response = iTach.send_command(command=command)
+
+print("Command: " + response)
 
 irList: List[IrCode] = []
 irList.append(irCode1)
@@ -45,4 +51,6 @@ deviceList.append(device2)
 
 mod = DocumentModifier()
 mod.writeFiles(deviceList)
+
+
 print("Finished")
