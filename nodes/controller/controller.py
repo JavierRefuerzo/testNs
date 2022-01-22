@@ -35,7 +35,7 @@ class Controller(udi_interface.Node):
 
     # Status Drivers
     drivers = [
-            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2},
+            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 25},
             ]
     
 
