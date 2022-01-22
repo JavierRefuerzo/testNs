@@ -197,7 +197,7 @@ class Controller(udi_interface.Node):
             self.polyObserver.iTach = self.iTach
         else:
             LOGGER.info('Updating iTach URL')
-            self.iTach.address = url
+            self.iTach.updateAddress(url)
 
 
     def getDevice(self, params, param) -> Device :
