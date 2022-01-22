@@ -227,7 +227,7 @@ class Controller(udi_interface.Node):
             LOGGER.info('Checking Device against existing Nodes: ' + device.name)
             exists = False
             for node in self.deviceNodeList:
-                if node.name == device.name:
+                if node.device.name == device.name:
                     LOGGER.info('updating Device Node: ' + node.device.name)
                     #node exists update the device i.e. ir codes
                     node.device = device
