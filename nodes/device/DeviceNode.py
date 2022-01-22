@@ -35,7 +35,7 @@ class DeviceNode(udi_interface.Node):
     #------------- Status Drivers
     # Status Drivers
     drivers = [
-            {'driver': Drivers.errorDriver.value, 'value': ErrorValues.none.value, 'uom': 2}
+            {'driver': Drivers.errorDriver.value, 'value': ErrorValues.none.value, 'uom': 25}
             ]
 
     

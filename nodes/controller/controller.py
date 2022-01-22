@@ -35,7 +35,7 @@ class Controller(udi_interface.Node):
 
     # Status Drivers
     drivers = [
-            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 25},
+            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2},
             ]
     
 
@@ -269,6 +269,3 @@ class Controller(udi_interface.Node):
             self.deviceNodeList.remove(device)
 
 
-    def stop(self, connector: int) -> str:
-        command = 'stopir,1:' + str(connector)
-        return command

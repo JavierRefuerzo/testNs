@@ -150,6 +150,8 @@ class Controller :
             return msg.decode()
         return msg
 
-     # ---- Get update
+    def getStopValue(self, connector: int) -> str:
+        command = 'stopir,1:' + str(connector)
+        return command
 
     

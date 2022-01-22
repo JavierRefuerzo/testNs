@@ -68,5 +68,5 @@ class PolyglotObserver :
     def send_stop_ir_command(self, connector: int) -> str:
         if self.iTach == None:
             return None
-        data = self.iTach.stop()
+        data = self.iTach.getStopValue(connector)
         return self.iTach.send_command(command= data)

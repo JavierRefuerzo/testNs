@@ -6,8 +6,8 @@
     "install": "install.sh",
     "description": "iTach IR.",
     "notice": "",
-    "shortPoll": "5",
-    "longPoll": "30",
+    "shortPoll": "60",
+    "longPoll": "600",
 	"logLevel": "INFO",
     "profile_version": "0.0.1",
 	"customParams": {
