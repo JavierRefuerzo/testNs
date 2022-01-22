@@ -51,9 +51,7 @@ class DeviceNode(udi_interface.Node):
         LOGGER.info(' init, parent: ')
         self.poly = polyglot
         self.device = device
-        self.polyObserver = polyObserver
-        self.polyObserver.iTachError.attach(self.setError)
-
+       
         #Set initial values
         
         #change the station name to include stationId
@@ -68,6 +66,11 @@ class DeviceNode(udi_interface.Node):
         # Add this node to ISY
         super(DeviceNode, self).__init__(polyglot, parentAddress, self.address, self.name)
         self.poly.addNode(self)
+
+        # OBSERVERS MUST BE ADDED AFTER addNode(self) or there may be a crash as the address does not exist
+        self.polyObserver = polyObserver
+        self.polyObserver.iTachError.attach(self.setError)
+
 
         LOGGER.info('update station status')
         self.setDriver(Drivers.errorDriver.value, ErrorValues.none.value, True, True)
