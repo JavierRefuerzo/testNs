@@ -107,7 +107,8 @@ class DeviceNode(udi_interface.Node):
         LOGGER.info('code_uom25: ' + str(code_uom25))
         connector_uom25 = query.get('CONNECTOR.uom25')
         LOGGER.info('connector_uom25: ' + str(connector_uom25))
-
+        repeat_uom25 = query.get('REPEAT.uom25')
+        LOGGER.info('connector_uom25: ' + str(connector_uom25))
         
 
     # <p id="CONNECTOR" editor="connector" />
