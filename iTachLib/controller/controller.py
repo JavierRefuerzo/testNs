@@ -5,7 +5,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-import udi_interface
+#import udi_interface
 from typing import Callable, List
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
@@ -26,6 +26,7 @@ class Controller :
 
     def __init__(self, address: str, errorObserver: Callable):
         self.address = address
+        self.address = self.address.replace("http://", "")
         self.deviceList = []
         # TODO Add connection Test
 
@@ -124,6 +125,7 @@ class Controller :
         except socket.error as error:
             print(repr(error))
             LOGGER.info("ERROR: " + str(error))
+            response = "ERROR: " + str(error)
         finally:
             sock.close()
             LOGGER.info("Close Socket")
