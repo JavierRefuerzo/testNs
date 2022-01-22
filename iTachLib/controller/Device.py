@@ -74,7 +74,7 @@ class Device :
             if newCode.buttonName == button.buttonName:
                 button.gcCodeOne = newCode.gcCodeOne
                 button.gdCodeTwo = newCode.gdCodeTwo
-                return
+                return button
         return None
 
     def getIrCode(self, index: int) -> IrCode:
