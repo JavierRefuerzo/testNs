@@ -98,7 +98,7 @@ class DeviceNode(udi_interface.Node):
     #  <p id="CONNECTOR" editor="connector" />
     #  <p id="REPETE" editor="repete" />
     def cmdCOMMAND(self, command):
-        LOGGER.info('cmd COMMAND')
+        LOGGER.info('cmdCOMMAND: ' + str(command))
         val = int(command.get('value'))
         if val == None:
             return
