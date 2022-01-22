@@ -9,7 +9,6 @@ from tkinter.messagebox import NO
 from typing import Callable, List
 from iTachLib.controller import IrCode
 from objects.errors import Errors
-from nodes.controller.drivers import ErrorValues
 from iTachLib.controller.IrCode import IrCode
 
 
