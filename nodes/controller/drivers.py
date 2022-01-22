@@ -18,6 +18,7 @@ class StatusValues(Enum):
 
 
 class ErrorValues(Enum):
+    unknown = -2
     connection = -1
     none = 0
     ERR_01 = 1

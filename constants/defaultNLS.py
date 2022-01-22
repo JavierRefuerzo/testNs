@@ -34,6 +34,7 @@ CMDP-CONNECTOR-NAME = Connector
 CMDP-REPEAT-NAME = Repeat
 
 
+ERRORS--2 = Unknown Error (see logs)
 ERRORS--1 = Connection Error (see logs)
 ERRORS-0 = None
 ERRORS-1 = Invalid command. Command not found

@@ -5,8 +5,10 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
+from urllib import response
 import udi_interface
 from typing import Callable, List
+from objects.LiveObject import LiveObject
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
 from iTachLib.controller.Device import Device
@@ -16,37 +18,28 @@ LOGGER = udi_interface.LOGGER
 
 
 class Controller :
-    errors: Errors = None
-    errorObserver: Callable = None
-    #TODO: Add removal listener
+    errorObserver: LiveObject
 
     address: str
     deviceList: List[Device]
 
 
-    def __init__(self, address: str, errorObserver: Callable):
+    def __init__(self, address: str, errorObserver: LiveObject):
         self.address = address
         self.address = self.address.replace("http://", "")
         self.deviceList = []
+        self.errorObserver = errorObserver
         # TODO Add connection Test
 
     # ------ Setters with update listeners
 
-    def setErrors(self, error: Errors):
-        #set error to global
-        self.errors = error
+    def setErrors(self, error: int):
         #return if there is no observer
         if self.errorObserver == None:
             return
         #update observer    
-        self.errorObserver(self.errors)
+        self.errorObserver.updateOnChange(error)
     
-    '''
-    Use these functions to set/clear errors so they are passed to observer function
-    '''
-    def clearError(self):
-        noneError = Errors("none", code=ErrorValues.none.value)
-        self.setErrors(noneError)
 
 
     # ------ Setters
@@ -123,13 +116,32 @@ class Controller :
         except socket.error as error:
             print(repr(error))
             LOGGER.info("ERROR: " + str(error))
-            response = "ERROR: " + str(error)
+            response = "ERR_0:0,-1," + str(error)
         finally:
             sock.close()
             LOGGER.info("Close Socket")
+            error = self.getError(response)
+            self.setErrors(error)
             return response
 
-      
+    def getError(self, respons) -> int:
+        if response == None:
+            return ErrorValues.connection.value
+        if response.contains("completeir"):
+            return ErrorValues.none.value
+        if not response.contains("ERR_"):
+            return ErrorValues.unknown.value
+        # Looking for this ERR_0:0,001 
+        split = respons.split(",")    
+        if len(split) > 2:
+            return ErrorValues.unknown.value
+        error = split[1]
+        try:
+            intError = int(error)
+            return intError
+        except Exception as e:
+            LOGGER.info("Could not get error code: " + error + ". " + str(e))
+        return ErrorValues.unknown
     
     def format_message(self, msg):
         """format message"""

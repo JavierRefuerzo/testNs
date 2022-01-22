@@ -26,9 +26,9 @@ class PolyglotObserver :
 
     # Observed objects
     customParams: LiveObject
-    start: LiveObject
     stop: LiveObject
     polls: LiveObject
+    iTachError: LiveObject
     
     #customParamObserverList: List[Callable]
     
@@ -42,18 +42,20 @@ class PolyglotObserver :
         self.customParams = LiveObject()
         self.stop = LiveObject()
         self.polls = LiveObject()
+        self.iTachError = LiveObject()
 
         # observe mqtt
         self.setMqttObsevers()
 
 
         
-     #---------- MQTT Observers
+    #---------- MQTT Observers
 
     def setMqttObsevers(self):
         self.poly.subscribe(self.poly.STOP, self.stop.update)
         self.poly.subscribe(self.poly.CUSTOMPARAMS, self.customParams.update)
         self.poly.subscribe(self.poly.POLL, self.polls.update)
+
 
 
     #---------- Getters
