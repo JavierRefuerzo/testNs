@@ -29,6 +29,7 @@ class PolyglotObserver :
     stop: LiveObject
     polls: LiveObject
     iTachError: LiveObject
+    moduleType: LiveObject
     
     #customParamObserverList: List[Callable]
     
@@ -43,13 +44,14 @@ class PolyglotObserver :
         self.stop = LiveObject()
         self.polls = LiveObject()
         self.iTachError = LiveObject()
+        self.moduleType = LiveObject()
 
-        # observe mqtt
+        # subscribe to mqtt
         self.setMqttObsevers()
 
 
         
-    #---------- MQTT Observers
+    #---------- Subscribe to MQTT
 
     def setMqttObsevers(self):
         self.poly.subscribe(self.poly.STOP, self.stop.update)
@@ -68,5 +70,5 @@ class PolyglotObserver :
     def send_stop_ir_command(self, connector: int) -> str:
         if self.iTach == None:
             return None
-        data = self.iTach.getStopValue(connector)
-        return self.iTach.send_command(command= data)
+        return self.iTach.sendStop(connector)
+        

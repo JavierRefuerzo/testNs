@@ -44,8 +44,6 @@ class IrCode :
         split[4] = str(repeat)
 
         command: str = ",".join(split)
-
-        print(command)
         return command
 
     

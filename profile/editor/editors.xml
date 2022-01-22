@@ -6,6 +6,9 @@
 	<editor id="code">
 		<range uom="25" subset="1,2" nls="CODE"/>
 	</editor>
+	<editor id="moduleAddress">
+		<range uom="56" subset="1,2"/>
+	</editor>
 	<editor id="connector">
 		<range uom="25" subset="1,2,3" nls="CONNECTOR" />
 	</editor>

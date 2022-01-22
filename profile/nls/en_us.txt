@@ -4,7 +4,8 @@ ND-ctl-NAME = iTach IR
 ND-ctl-ICON = Output
 
 ST-ctl-ST-NAME = NodeServer Online
-#ST-ctl-GV0-NAME = Last Error Message
+ST-ctl-GV0-NAME = Module address
+ST-ctr-GV1-NAME = Module Type
 
 #irdevice
 NDN-irdevice-NAME = IR Code Set
@@ -58,6 +59,14 @@ CODE-2 = Button Code 2
 CONNECTOR-1 = Left 1
 CONNECTOR-2 = Center 2
 CONNECTOR-3 = Right 3
+
+MODULETYPE-0 = UNKNOWN
+MODULETYPE-1 = WIFI
+MODULETYPE-2 = ETHERNET
+MODULETYPE-3 = 3 RELAY
+MODULETYPE-4 = 3 IR
+MODULETYPE-5 = 1 SERIAL
+
     
 
 

@@ -9,7 +9,7 @@ import udi_interface
 from typing import Callable, List, final
 from iTachLib.controller.Device import Device
 from iTachLib.controller.codeSetParser import CodeSetParser
-from nodes.controller.drivers import Drivers
+from nodes.controller.drivers import Drivers, ModuleTypes
 from nodes.controller.drivers import StatusValues
 from nodes.controller.drivers import ErrorValues
 from nodes.device.DeviceNode import DeviceNode
@@ -36,6 +36,8 @@ class Controller(udi_interface.Node):
     # Status Drivers
     drivers = [
             {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2},
+            {'driver': Drivers.moduleAddress.value, 'value': 1, 'uom': 56},
+            {'driver': Drivers.moduleType.value, 'value': ModuleTypes.UNKNOWN.value, 'uom': 25},
             ]
     
 
@@ -56,6 +58,7 @@ class Controller(udi_interface.Node):
         
         self.poly = polyglot
         self.polyObserver = PolyglotObserver(self.poly)
+        self.polyObserver.moduleType.attach(self.setModuleType)
         self.deviceNodeList = []
 
         #set custom params
@@ -87,18 +90,8 @@ class Controller(udi_interface.Node):
     def setStatus(self, statusEnum: StatusValues):
         self.setDriver(Drivers.status.value, statusEnum.value, True, True)
 
-    def setError(self, error: Errors):
-        #only update error code if it has changed
-        if self.errorCode == error.code:
-            return
-        LOGGER.info('setError: ' + error.text)
-        self.errorCode = error.code
-        self.setDriver(Drivers.error.value, error.code, True, True)
-        # set/remove notices
-        if self.errorCode == ErrorValues.none.value:
-            self.poly.Notices.clear()
-        elif self.errorCode == ErrorValues.firmware.value:
-            self.poly.Notices['firmware'] = 'OpenSprinkler Firmware Update Required to use this Node Server. Minimum firmware supported is 2.1.9. Please be sure to backup open sprinkler before upgrading firmware as you settings will be removed! https://openthings.freshdesk.com/support/home see User Manuals and select your hardware 3.x or 2.x'
+    def setModuleType(self, type: int):
+        self.setDriver(Drivers.moduleType.value, type, True, True)
 
 
 
@@ -193,7 +186,7 @@ class Controller(udi_interface.Node):
         url = params[Params.url.value]
         if self.iTach == None:
             LOGGER.info('Creating iTach Controller')
-            self.iTach = ITach(address=url, errorObserver=self.polyObserver.iTachError)
+            self.iTach = ITach(address=url, observers=self.polyObserver)
             self.polyObserver.iTach = self.iTach
         else:
             LOGGER.info('Updating iTach URL')

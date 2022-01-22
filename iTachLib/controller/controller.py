@@ -5,46 +5,45 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-from urllib import response
 import udi_interface
-from typing import Callable, List
-from objects.LiveObject import LiveObject
-from objects.errors import Errors
-from nodes.controller.drivers import ErrorValues
+from typing import  List
+from nodes.controller.drivers import ErrorValues, ModuleTypes
 from iTachLib.controller.Device import Device
 import socket
+
 
 LOGGER = udi_interface.LOGGER
 
 
 class Controller :
-    errorObserver: LiveObject
-
+    observers = None
     address: str
     deviceList: List[Device]
+    # this may be a variable in the futue is used to get module type
+    moduleAddress: int = 1
 
-
-    def __init__(self, address: str, errorObserver: LiveObject):
+    def __init__(self, address: str, observers):
+        self.observers = observers
         self.updateAddress(address)
         self.deviceList = []
-        self.errorObserver = errorObserver
         # TODO Add connection Test
 
     def updateAddress(self, address: str):
         self.address = address
         self.address = self.address.replace("http://", "")
         LOGGER.info("address is: " + self.address)
+        self.getDevices()
 
     # ------ Setters with update listeners
 
     def setErrors(self, error: int):
         #return if there is no observer
-        if self.errorObserver == None:
-            return
-        #update observer    
-        self.errorObserver.updateOnChange(error)
+        if self.observers != None:  
+            self.observers.iTachError.updateOnChange(error)
     
-
+    def _setModuleTypeObserver(self, value: int):
+         if self.observers != None:
+            self.observers.moduleType.update(value)
 
     # ------ Setters
 
@@ -104,13 +103,13 @@ class Controller :
     
     # ---- Command functions
 
-    def send_command(self, command) -> any:
+    def send_command(self, command) -> str:
         byte_size=4096
         timeout=10
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         command = command + "\r"
-        response: any = None
+        response: str = None
         try:
             sock.connect((self.address, 4998))
             command = command.encode()
@@ -126,15 +125,19 @@ class Controller :
             error = self.getError(str(response))
             LOGGER.info("error is: " + str(error))
             self.setErrors(error)
-            return response
+            return str(response)
 
     def getError(self, response) -> int:
         if response == None:
             return ErrorValues.connection.value
+        # valid response
         if "completeir" in response:
             return ErrorValues.none.value
         if "stopir" in response:
             return ErrorValues.none.value
+        if "device" in response:
+            return ErrorValues.none.value
+        # error response   
         if "ERR_" not in response:
             return ErrorValues.unknown.value
         # Looking for this ERR_0:0,001 
@@ -155,8 +158,32 @@ class Controller :
             return msg.decode()
         return msg
 
-    def getStopValue(self, connector: int) -> str:
+    def sendStop(self, connector: int) -> str:
         command = 'stopir,1:' + str(connector)
-        return command
+        response: str = self.send_command(command)
+        return response
+
+    def getDevices(self) -> str:
+        command = 'getdevices'
+        response: str = self.send_command(command)
+        if "device" not in response:
+            self._setModuleTypeObserver(ModuleTypes.UNKNOWN.value)
+            LOGGER.info("devices not in response")
+            # error should already be set
+            return response
+        split = response.split("\r")
+        if len(split) < (self.moduleAddress + 1):
+            # ['device,0,0 ETHERNET', 'device,1,3 IR', 'endlistdevices', '']
+            self._setModuleTypeObserver(ModuleTypes.UNKNOWN.value)
+            return
+        moduleData = split[self.moduleAddress]
+        moduleSplit = moduleData.split(",")
+        if len(moduleSplit) < 3:
+            # device,1,3 IR
+            self._setModuleTypeObserver(ModuleTypes.UNKNOWN.value)
+            return
+        moduleType: ModuleTypes = ModuleTypes.getType(moduleSplit[2])
+        self._setModuleTypeObserver(moduleType)
+        return response
 
     

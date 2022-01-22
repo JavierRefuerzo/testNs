@@ -10,6 +10,30 @@ from enum import Enum
 #enum for drivers
 class Drivers(Enum):
     status = "ST"
+    moduleAddress = "GV0"
+    moduleType = "GV1"
+
+#enum for status values
+class ModuleTypes(Enum):
+    UNKNOWN = 0
+    WIFI = 1
+    ETHERNET = 2
+    RELAY_3 = 3
+    IR_3 = 4
+    SERIAL_1 = 5
+
+    def getType(raw: str) -> int:
+        if "WIFI" in raw:
+            return ModuleTypes.WIFI.value
+        if "ETHERNET" in raw:
+            return ModuleTypes.ETHERNET.value
+        if "3 RELAY" in raw:
+            return ModuleTypes.RELAY_3.value
+        if "3 IR" in raw:
+            return ModuleTypes.IR_3.value
+        if "1 SERIAL" in raw:
+            return ModuleTypes.SERIAL_1.value
+        return ModuleTypes.UNKNOWN.value
 
 #enum for status values
 class StatusValues(Enum):
