@@ -25,7 +25,7 @@ class Controller :
 
 
     def __init__(self, address: str, errorObserver: LiveObject):
-        self.updateAddress()
+        self.updateAddress(address)
         self.deviceList = []
         self.errorObserver = errorObserver
         # TODO Add connection Test
