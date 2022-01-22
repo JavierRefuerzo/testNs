@@ -9,7 +9,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 from typing import List
-from objects.DirModifier import DirModifier
+from objects.DocumentModifier import DocumentModifier
 from iTachLib.controller.Device import Device
 from iTachLib.controller.irCode import IrCode
 
@@ -41,6 +41,6 @@ deviceList: List[Device] = []
 deviceList.append(device1)
 deviceList.append(device2)
 
-mod = DirModifier()
+mod = DocumentModifier()
 mod.writeFiles(deviceList)
 print("Finished")

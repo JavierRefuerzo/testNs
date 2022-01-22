@@ -4,9 +4,8 @@ Polyglot v3 node server OpenSprinkler
 Copyright (C) 2021 Javier Refuerzo
 
 """
-from typing import Any, Callable, List
-import udi_interface
 
+import udi_interface
 from objects.LiveObject import LiveObject
 
 LOGGER = udi_interface.LOGGER

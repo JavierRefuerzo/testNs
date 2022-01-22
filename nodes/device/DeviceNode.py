@@ -10,7 +10,7 @@ from enum import Enum
 from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
-from objects.DirModifier import DirModifier
+from objects.DocumentModifier import DocumentModifier
 from objects.polyglotObserver import PolyglotObserver
 
 
@@ -59,7 +59,7 @@ class DeviceNode(udi_interface.Node):
         #Set initial values
         
         #change the station name to include stationId
-        mod = DirModifier()
+        mod = DocumentModifier()
         self.address = mod.getAddress(device)
         self.id = self.address
         self.name = mod.get_valid_node_name(device.name)

@@ -13,7 +13,7 @@ from constants.NodeDefTemplate import NodeDefTemplate
 from constants.defaultNLS import DefaultNls
 from iTachLib.controller.Device import Device
 
-class DirModifier :
+class DocumentModifier :
         
     def __init__(self) -> None:
         pass
