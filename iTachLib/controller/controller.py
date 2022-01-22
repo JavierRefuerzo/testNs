@@ -112,7 +112,7 @@ class Controller :
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         command = command + "\r"
-        respons: any = None
+        response: any = None
         try:
             sock.connect((self.address, 4998))
             command = command.encode()
@@ -126,10 +126,10 @@ class Controller :
             LOGGER.info("ERROR: " + str(error))
         finally:
             sock.close()
-
-        if response != None:
+            LOGGER.info("Close Socket")
             return response
-        return None
+
+      
     
     def format_message(self, msg):
         """format message"""

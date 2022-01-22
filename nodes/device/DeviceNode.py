@@ -109,7 +109,7 @@ class DeviceNode(udi_interface.Node):
         connector_uom25 = int(query.get('CONNECTOR.uom25'))
         LOGGER.info('connector_uom25: ' + str(connector_uom25))
         repeat_uom25 = int(query.get('REPEAT.uom25'))
-        LOGGER.info('connector_uom25: ' + str(connector_uom25))
+        LOGGER.info('repeate_uom25: ' + str(repeat_uom25))
         button = self.device.getIrCode(index=button_uom25)
         if button == None:
             return
