@@ -26,8 +26,35 @@ class IrCode :
     # 1 is module number (may change), staring with zero
     # :1 is connector
 
+    def sendCommand(self, buttonCode: int, connector: int, repeat: int):
+        
+        # get button code
+        code = self.gcCodeOne
+        if buttonCode == 2:
+            code = self.gdCodeTwo
+        
+        # split ir code for edit
+        split = code.split(",")
+        # set the connector
+        connector = split[1]
+        connectorSplit = connector.split(":")
+        connector = connectorSplit + ":" + str(connector)
+        split[1] = connector
+        # set repeat
+        split[4] = str(repeat)
 
-class Commands :
+        command: str = ",".join(split)
+
+        print(command)
+
+
+    
+
+        #sendir,1:1,1,38000,1,69,339,171,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,21,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,1509,339,84,21,3634
+
+
+
+#class Commands :
 
 
     #get_NET see #5 in API
@@ -47,5 +74,5 @@ class Commands :
 
     #stop
 
-    def __init__(self):
-        print("init")
+    # def __init__(self):
+    #     print("init")
