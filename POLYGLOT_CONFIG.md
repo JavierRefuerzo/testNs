@@ -31,4 +31,4 @@ Now select the "Send Code Set" button next to the Device Model. Selecting "Selec
 
 After receiving the email verify that you can see all IR Codes when scrolling to the bottom of the page. Gmail will clip the message and have a "Message clipped" not at the bottom of the page along with a View Entire Message button. Copy the entire message from the commas in the last IR Code to the beginning of the "function, code1, hexcode1, code2, hexcode2" header then paste into a new custom param value. Set the custom param key to the device name.
 
-There may be multiple code sets that need to be downloaded or a single manufacture. Each Code set should be put into the Node Server Separately.
+There may be multiple code sets that need to be downloaded or a single manufacture. Each Code set should be put into the Node Server Separately. This node serve is installed with the Onkyo Receiver Codes as an example
