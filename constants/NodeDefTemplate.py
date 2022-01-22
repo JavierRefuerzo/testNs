@@ -33,7 +33,7 @@ class NodeDefTemplate() :
           <p id="BUTTON" editor="button" />
           <p id="CODE" editor="code" />
           <p id="CONNECTOR" editor="connector" />
-          <p id="REPETE" editor="repete" />
+          <p id="REPEAT" editor="repeat" />
         </cmd>
         <cmd id="STOP">
           <p id="CONNECTOR" editor="connector" />

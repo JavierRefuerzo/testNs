@@ -99,9 +99,15 @@ class DeviceNode(udi_interface.Node):
     #  <p id="REPETE" editor="repete" />
     def cmdCOMMAND(self, command):
         LOGGER.info('cmdCOMMAND: ' + str(command))
-        val = int(command.get('value'))
-        if val == None:
-            return
+        query = command.get('query')
+        LOGGER.info('query: ' + str(query))
+        button_uom25 = command.get('query')
+        LOGGER.info('button_uom25: ' + str(button_uom25))
+        code_uom25 = command.get('query')
+        LOGGER.info('code_uom25: ' + str(code_uom25))
+        connector_uom25 = command.get('query')
+        LOGGER.info('connector_uom25: ' + str(connector_uom25))
+
         
 
     # <p id="CONNECTOR" editor="connector" />
