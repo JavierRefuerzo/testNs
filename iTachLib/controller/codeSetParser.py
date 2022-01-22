@@ -16,7 +16,7 @@ from iTachLib.controller.Device import Device
 LOGGER = udi_interface.LOGGER
 
 
-from iTachLib.controller.IrCode import IrCode
+from iTachLib.controller.irCode import IrCode
 
 
 class CodeSetParser:

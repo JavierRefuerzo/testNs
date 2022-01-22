@@ -7,12 +7,8 @@ Copyright (C) 2021 Javier Refuerzo
 
 
 
-
-from email.headerregistry import Address
 from typing import List
-from objects.DocumentModifier import DocumentModifier
-from iTachLib.controller.Device import Device
-from iTachLib.controller.IrCode import IrCode
+from iTachLib.controller.irCode import IrCode
 from iTachLib.controller.controller import Controller as ITACH
 
 

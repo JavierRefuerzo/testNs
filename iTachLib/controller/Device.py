@@ -5,7 +5,7 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-from iTachLib.controller.IrCode import IrCode
+from iTachLib.controller.irCode import IrCode
 from typing import List
 
 

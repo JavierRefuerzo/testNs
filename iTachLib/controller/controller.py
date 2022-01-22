@@ -120,19 +120,20 @@ class Controller :
         finally:
             sock.close()
             LOGGER.info("Close Socket")
-            error = self.getError(response)
+            error = self.getError(str(response))
+            LOGGER.info("error is: " + str(error))
             self.setErrors(error)
             return response
 
-    def getError(self, respons) -> int:
+    def getError(self, response) -> int:
         if response == None:
             return ErrorValues.connection.value
-        if response.contains("completeir"):
+        if "completeir" in response:
             return ErrorValues.none.value
-        if not response.contains("ERR_"):
+        if "ERR_" not in response:
             return ErrorValues.unknown.value
         # Looking for this ERR_0:0,001 
-        split = respons.split(",")    
+        split = response.split(",")    
         if len(split) > 2:
             return ErrorValues.unknown.value
         error = split[1]
