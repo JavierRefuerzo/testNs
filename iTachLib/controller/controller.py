@@ -27,6 +27,7 @@ class Controller :
     def __init__(self, address: str, errorObserver: LiveObject):
         self.address = address
         self.address = self.address.replace("http://", "")
+        LOGGER.info("address is: " + self.address)
         self.deviceList = []
         self.errorObserver = errorObserver
         # TODO Add connection Test

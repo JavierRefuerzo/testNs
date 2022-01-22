@@ -1,3 +1,10 @@
 
-
-
+2022-01-22 10:28:43,453 MainThread udi_interface      INFO     polylogger:set_basic_config: set_basic_config: enable=True level=30
+2022-01-22 10:28:43,861 MainThread udi_interface      INFO     __init__:<module>: UDI Python Interface for Polyglot version 3 3.0.32 Starting...
+2022-01-22 10:28:43,863 MainThread udi_interface      DEBUG    udi_interface:write: Started
+2022-01-22 10:28:43,864 MainThread udi_interface      DEBUG    udi_interface:write: sendir,0:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,21,21,21,21,63,21,21,21,21,21,21,21,21,21,21,21,63,21,63,21,21,21,63,21,63,21,63,21,63,21,63,21,1466,339,84,21,3633
+2022-01-22 10:28:43,870 MainThread udi_interface      INFO     controller:send_command: RECEIVED: ERR_0:0,002
+2022-01-22 10:28:43,870 MainThread udi_interface      INFO     controller:send_command: Close Socket
+2022-01-22 10:28:43,871 MainThread udi_interface      INFO     controller:send_command: error is: 2
+2022-01-22 10:28:43,871 MainThread udi_interface      DEBUG    udi_interface:write: Command: ERR_0:0,002
+2022-01-22 10:28:43,871 MainThread udi_interface      DEBUG    udi_interface:write: Finished
