@@ -85,7 +85,7 @@ class DeviceNode(udi_interface.Node):
     #---------- Status Setters
    
     def setError(self, error: int):
-        LOGGER.info('ERROR RECEIVED')
+        LOGGER.info('ERROR RECEIVED: ' + str(error))
         self.setDriver(Drivers.errorDriver.value, error, True, True)
     
    

@@ -39,7 +39,8 @@ class Controller :
     def setErrors(self, error: int):
         #return if there is no observer
         if self.observers != None:  
-            self.observers.iTachError.updateOnChange(error)
+            self.observers.iTachError.update(error)
+            LOGGER.info("Sent error to observable")
             return
         LOGGER.info("Observer Not Set")
     
@@ -121,8 +122,8 @@ class Controller :
             response = self.format_message(sock.recv(byte_size))
             LOGGER.info("RECEIVED: " + response)
         except socket.error as error:
-            LOGGER.info("ERROR: " + str(error))
-            response = "ERR_0:0,-1," + str(error)
+            LOGGER.info("ERROR : " + str(error))
+            response = "ERR_0:0,-1, " + str(error)
         finally:
             sock.close()
             LOGGER.info("Close Socket")

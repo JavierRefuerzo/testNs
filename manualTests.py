@@ -29,7 +29,7 @@ irCode1 = IrCode("POWER TOGGLE", "sendir,0:1,1,38000,1,69,339,170,21,21,21,63,21
 irCode2 = IrCode("Test Button2", "sendir,1:1,1,38000,1,69,339,170,21,21,21,63,21,21,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,63,21,21,21,63,21,21,21,63,21,63,21,63,21,21,21,63,21,21,21,21,21,63,21,21,21,21,21,21,21,63,21,21,21,63,21,1466,339,84,21,3633")
 
 command = irCode1.command(buttonCode=1, connector=1, repeat=1)
-iTach = ITACH(address="http://192.168.1.70", observers=None)
+iTach = ITACH(address="http://192.168.0.70", observers=None)
 response = iTach.send_command(command=command)
 
 
