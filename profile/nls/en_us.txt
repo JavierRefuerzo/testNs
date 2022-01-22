@@ -21,13 +21,35 @@ CMDP-CONNECTOR-NAME = Connector
 CMDP-REPEAT-NAME = Repeat
 
 
+ERRORS--1 = Connection Error (see logs)
 ERRORS-0 = None
-ERRORS-1 = Missing Password
-ERRORS-2 = Missing IP Address
-ERRORS-3 = Connection Error
-ERRORS-4 = CheckLogs
-ERRORS-5 = Invalid URL
-ERRORS-6 = OpenSprinkler Firmware Update Required (min 2.1.9)
+ERRORS-1 = Invalid command. Command not found
+ERRORS-2 = Invalid module address (does not exist).
+ERRORS-3 = Invalid connector address (does not exist).
+ERRORS-4 = Invalid ID value
+ERRORS-5 = Invalid frequency value
+ERRORS-6 = Invalid repeat value
+ERRORS-7 = Invalid offset value.
+ERRORS-8 = Invalid pulse count.
+ERRORS-9 = Invalid pulse data.
+ERRORS-10 = Uneven amount of <on|off> statements.
+ERRORS-11 = No carriage return found.
+ERRORS-12 = Repeat count exceeded.
+ERRORS-13 = 3 IR command sent to input connector
+ERRORS-14 = Blaster command sent to non-blaster connector.
+ERRORS-15 = No carriage return before buffer full.
+ERRORS-16 = No carriage return.
+ERRORS-17 = Bad command syntax.
+ERRORS-18 = Sensor command sent to non-input connector.
+ERRORS-19 = Repeated IR transmission failure.
+ERRORS-20 = Above designated IR <on|off> pair limit.
+ERRORS-21 = Symbol odd boundary
+ERRORS-22 = Undefined symbol.
+ERRORS-23 = Unknown option.
+ERRORS-24 = Invalid baud rate setting.
+ERRORS-25 = Invalid flow control setting
+ERRORS-26 = Invalid parity setting.
+ERRORS-27 = Settings are locked.
 
 
 CODE-1 = Button Code 1
