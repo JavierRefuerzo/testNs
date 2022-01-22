@@ -5,18 +5,14 @@ Copyright (C) 2021 Javier Refuerzo
 
 """
 
-from tkinter.messagebox import NO
-from typing import Callable, List
+from typing import List
 from iTachLib.controller import IrCode
-from objects.errors import Errors
 from iTachLib.controller.IrCode import IrCode
 
 
 
 
 class Device :
-    errors: Errors = None
-    errorObserver: Callable = None
 
     name: str
     buttons: List[IrCode]
