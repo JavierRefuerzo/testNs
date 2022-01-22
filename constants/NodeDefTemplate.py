@@ -50,7 +50,7 @@ class NodeDefTemplate() :
     def getNodeDef(self,  address: str, number: int) -> str:
         nls = self.nodeDef
         #button editor
-        editor = "_25_0_0_" + str(number) + "_N_" + address
+        editor = "_25_0_R_0_" + str(number) + "_N_" + address
         replacment = '<p id="BUTTON" editor="' + editor + '" />'
         nls = nls.replace('<p id="BUTTON" editor="button" />', replacment)
         #nodeDef

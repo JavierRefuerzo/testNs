@@ -33,7 +33,7 @@ class DocumentModifier :
             print("device: " + device.name)
             name = self.getAddress(device)
             nls.write("#Device - " + device.name + "\n")    
-            nls.write('ND-' + name + '-NAME = IR Code Set')
+            nls.write('ND-' + name + '-NAME = IR Code Set\n')
             print("num of codes: " + str(len(device.buttons)))
             for index, code in enumerate(device.buttons):
                 #This should be changed to nodeAddress
