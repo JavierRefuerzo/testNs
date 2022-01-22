@@ -51,10 +51,11 @@ class DeviceNode(udi_interface.Node):
     polyObserver: PolyglotObserver
 
 
-    def __init__(self, polyglot, parentAddress: str, device: Device, polyObserver:PolyglotObserver):
+    def __init__(self, polyglot, parentAddress: str, device: Device, polyObserver: PolyglotObserver):
         LOGGER.info(' init, parent: ')
         self.poly = polyglot
         self.device = device
+        self.polyObserver = polyObserver
 
         #Set initial values
         
