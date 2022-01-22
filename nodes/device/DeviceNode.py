@@ -113,7 +113,7 @@ class DeviceNode(udi_interface.Node):
         button = self.device.getIrCode(index=button_uom25)
         if button == None:
             return
-        data = button.command(buttonCode=code_uom25, connector=connector_uom25, repeat=repeat_uom25)    
+        data = button.command(buttonCode=code_uom25, connector=connector_uom25, repeat=repeat_uom56)    
         response = self.polyObserver.send_command(command=data)
         LOGGER.info('response: ' + str(response))
 
