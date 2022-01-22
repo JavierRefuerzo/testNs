@@ -76,3 +76,8 @@ class Device :
                 button.gdCodeTwo = newCode.gdCodeTwo
                 return
         return None
+
+    def getIrCode(self, index: int) -> IrCode:
+        if len(self.buttons) > index:
+            return self.buttons[index]
+        return None

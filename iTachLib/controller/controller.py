@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Polyglot v3 node server OpenSprinkler
+Polyglot v3 node server iTach IR
 Copyright (C) 2021 Javier Refuerzo
 
 """
@@ -10,6 +10,7 @@ from typing import Callable, List
 from objects.errors import Errors
 from nodes.controller.drivers import ErrorValues
 from iTachLib.controller.Device import Device
+import socket
 
 LOGGER = udi_interface.LOGGER
 
@@ -105,8 +106,33 @@ class Controller :
     
     # ---- Command functions
 
+    def send_command(self, command) -> any:
+        byte_size=4096
+        timeout=10
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(timeout)
+        command = command + "\r"
+        try:
+            sock.connect((self.address, 4998))
+            command = command.encode()
+            sock.sendall(command)
+            response = self.format_message(sock.recv(byte_size))
+            print("Sent: " + command)
+            print("Received: " + response)
+        except socket.error as error:
+            print(repr(error))
+        finally:
+            sock.close()
 
-   
+        if response != None:
+            return response
+        return None
+    
+    def format_message(self, msg):
+        """format message"""
+        if isinstance(msg, bytes):
+            return msg.decode()
+        return msg
 
      # ---- Get update
 

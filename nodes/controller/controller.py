@@ -194,6 +194,7 @@ class Controller(udi_interface.Node):
         if self.iTach == None:
             LOGGER.info('Creating iTach Controller')
             self.iTach = ITach(address=url, errorObserver=self.setError)
+            self.polyObserver.iTach = self.iTach
         else:
             LOGGER.info('Updating iTach URL')
             self.iTach.address = url

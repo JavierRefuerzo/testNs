@@ -6,7 +6,9 @@ Copyright (C) 2021 Javier Refuerzo
 """
 
 import udi_interface
+import iTachLib
 from objects.LiveObject import LiveObject
+from iTachLib.controller.controller import Controller as Itach
 
 LOGGER = udi_interface.LOGGER
 
@@ -18,6 +20,9 @@ class PolyglotObserver :
     
     #polyglot
     poly = None
+
+    #controller (repository)
+    iTach: Itach = None
 
     # Observed objects
     customParams: LiveObject
@@ -51,3 +56,11 @@ class PolyglotObserver :
         self.poly.subscribe(self.poly.POLL, self.polls.update)
 
 
+    #---------- Getters
+
+    def send_command(self, command):
+        if self.iTach == None:
+            return
+
+        self.iTach.send_command(command= command)
+        #TODO Check errors and update observers

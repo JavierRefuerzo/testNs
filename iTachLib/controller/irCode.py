@@ -26,7 +26,7 @@ class IrCode :
     # 1 is module number (may change), staring with zero
     # :1 is connector
 
-    def sendCommand(self, buttonCode: int, connector: int, repeat: int):
+    def command(self, buttonCode: int, connector: int, repeat: int) -> str:
         
         # get button code
         code = self.gcCodeOne
@@ -46,7 +46,7 @@ class IrCode :
         command: str = ",".join(split)
 
         print(command)
-
+        return command
 
     
 

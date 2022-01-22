@@ -109,7 +109,12 @@ class DeviceNode(udi_interface.Node):
         LOGGER.info('connector_uom25: ' + str(connector_uom25))
         repeat_uom25 = query.get('REPEAT.uom25')
         LOGGER.info('connector_uom25: ' + str(connector_uom25))
-        
+        button = self.device.getIrCode(index=button_uom25)
+        if button == None:
+            return
+        data = button.command(buttonCode=code_uom25, connector=connector_uom25, repeat=repeat_uom25)    
+        response = self.polyObserver.send_command(command=data)
+        LOGGER.info('response: ' + str(response))
 
     # <p id="CONNECTOR" editor="connector" />
     def cmdSTOP(self, command):
