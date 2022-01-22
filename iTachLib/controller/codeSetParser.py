@@ -16,7 +16,7 @@ from iTachLib.controller.Device import Device
 LOGGER = udi_interface.LOGGER
 
 
-from iTachLib.controller.irCode import IrCode
+from iTachLib.controller.IrCode import IrCode
 
 
 class CodeSetParser:
@@ -67,7 +67,7 @@ class CodeSetParser:
             #replace any empty strings at the end of the list i.e "XX","XX",]
             code = code.replace(",]","]")
 
-            print("codeInfo is:\n" + code + "\n")
+            #print("codeInfo is:\n" + code + "\n")
 
             codeInfo = json.loads(code)
             size = len(codeInfo)
@@ -76,11 +76,6 @@ class CodeSetParser:
             if size < 2:
                 print("code size too small")
                 continue
-            
-            print("Code: " + str(index) + ". len: " + str(size))
-            print("function: " + codeInfo[0])
-            print("code1 " + codeInfo[1])
-
             ir = IrCode(button=codeInfo[0], gcCodeOne=codeInfo[1])
             # if size > 2:
             #     print("hexcode1 " + codeInfo[2])

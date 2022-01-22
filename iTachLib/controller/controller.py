@@ -119,8 +119,6 @@ class Controller :
             command = command.encode()
             sock.sendall(command)
             response = self.format_message(sock.recv(byte_size))
-            print("Sent: " + str(command))
-            print("Received: " + response)
             LOGGER.info("RECEIVED: " + response)
         except socket.error as error:
             print(repr(error))
