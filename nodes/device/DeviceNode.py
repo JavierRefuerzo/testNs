@@ -101,11 +101,11 @@ class DeviceNode(udi_interface.Node):
         LOGGER.info('cmdCOMMAND: ' + str(command))
         query = command.get('query')
         LOGGER.info('query: ' + str(query))
-        button_uom25 = command.get('query')
+        button_uom25 = query.get('BUTTON.uom25')
         LOGGER.info('button_uom25: ' + str(button_uom25))
-        code_uom25 = command.get('query')
+        code_uom25 = query.get('CODE.uom25')
         LOGGER.info('code_uom25: ' + str(code_uom25))
-        connector_uom25 = command.get('query')
+        connector_uom25 = query.get('CONNECTOR.uom25')
         LOGGER.info('connector_uom25: ' + str(connector_uom25))
 
         
