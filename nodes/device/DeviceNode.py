@@ -70,7 +70,7 @@ class DeviceNode(udi_interface.Node):
         self.poly.addNode(self)
 
         LOGGER.info('update station status')
-        self.setDriver(Drivers.errorDriver.value, StatusValues.true.value, True, True)
+        self.setDriver(Drivers.errorDriver.value, ErrorValues.none.value, True, True)
         # subscribe to the events we want
         
 
