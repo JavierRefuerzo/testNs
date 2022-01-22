@@ -23,18 +23,17 @@ class DocumentModifier :
         self.makeNodeDef(devices)
 
     def makeNls(self, devices: List[Device]):
-        print("makeNls ")
         # There is only one nls, so read the nls template and write the new one
         en_us_txt = "profile/nls/en_us.txt"
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         nls.write(DefaultNls.nls)
         for device in devices:
-            print("device: " + device.name)
+            #print("device: " + device.name)
             name = self.getAddress(device)
             nls.write("#Device - " + device.name + "\n")    
             nls.write('ND-' + name + '-NAME = IR Code Set\n')
-            print("num of codes: " + str(len(device.buttons)))
+            #print("num of codes: " + str(len(device.buttons)))
             for index, code in enumerate(device.buttons):
                 #This should be changed to nodeAddress
                 command = name + "-" + str(index) + " = " + code.buttonName + "\n"
@@ -55,7 +54,7 @@ class DocumentModifier :
             length = len(device.buttons) - 1
             name = self.getAddress(device)
             nodeXml = template.getNodeDef(name, length)
-            print("device: " + device.name)
+            #print("device: " + device.name)
             nodeDef.write('  <!-- Device ' + device.name + "-->")    
             nodeDef.write(nodeXml)    
 

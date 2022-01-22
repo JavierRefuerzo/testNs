@@ -24,12 +24,12 @@ class CodeSetParser:
     codeSet: List[IrCode]
 
     def __init__(self, data: str):
-        print("CodeSetParser init")
+        #print("CodeSetParser init")
         self.codeSet = []
         self._parse(data)
 
     def _parse(self, data: str):
-        print ("parsing started")
+        #print("parsing started")
 
         #This splits the ir codes from the email data
         email = data.split('''function, code1, hexcode1, code2, hexcode2''')
@@ -74,13 +74,13 @@ class CodeSetParser:
 
             # we need at least a function name
             if size < 2:
-                print("code size too small")
+                #print("code size too small")
                 continue
             ir = IrCode(button=codeInfo[0], gcCodeOne=codeInfo[1])
             # if size > 2:
             #     print("hexcode1 " + codeInfo[2])
             if size > 3:
-                print("hexcode1 " + codeInfo[3])
+                #print("hexcode1 " + codeInfo[3])
                 ir.gdCodeTwo = codeInfo[3]
             # if size > 4:
             #     print("hexcode2 " + codeInfo[4])

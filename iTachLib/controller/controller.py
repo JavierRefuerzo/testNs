@@ -118,7 +118,6 @@ class Controller :
             response = self.format_message(sock.recv(byte_size))
             LOGGER.info("RECEIVED: " + response)
         except socket.error as error:
-            print(repr(error))
             LOGGER.info("ERROR: " + str(error))
             response = "ERR_0:0,-1," + str(error)
         finally:
