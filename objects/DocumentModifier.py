@@ -29,14 +29,15 @@ class DocumentModifier :
         self.make_file_dir(en_us_txt)
         nls = open(en_us_txt,  "w")
         nls.write(DefaultNls.nls)
-        for index, device in enumerate(devices):
+        for device in devices:
             print("device: " + device.name)
+            name = self.getAddress(device)
             nls.write("#Device - " + device.name + "\n")    
+            nls.write('ND-' + name + '-NAME = IR Code Set')
             print("num of codes: " + str(len(device.buttons)))
-            for code in device.buttons:
+            for index, code in enumerate(device.buttons):
                 #This should be changed to nodeAddress
-                name = self.getAddress(device)
-                command = name + "-" + str(index) + "\n"
+                command = name + "-" + str(index) + " = " + code.buttonName + "\n"
                 nls.write(command)    
             # add double line between commands
             nls.write("\n\n")

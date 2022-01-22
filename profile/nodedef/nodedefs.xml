@@ -33,6 +33,26 @@
     </cmds>
   </nodeDef>
 
+  <!--  Device Onkyo Receiver -->
+  <nodeDef id="onkyo_receiver" nls="irdevice">
+    <sts>
+      <st id="ST" editor="bool"/>
+    </sts>
+    <cmds>
+    <sends/>
+      <accepts>
+        <cmd id="COMMAND">
+          <p id="BUTTON" editor="_25_0_0_2_N_onkyo_receiver"/>
+          <p id="CODE" editor="code"/>
+          <p id="CONNECTOR" editor="connector"/>
+          <p id="REPETE" editor="repete"/>
+        </cmd>
+        <cmd id="STOP">
+          <p id="CONNECTOR" editor="connector"/>
+        </cmd>
+      </accepts>
+    </cmds>
+  </nodeDef>
  
 
 
