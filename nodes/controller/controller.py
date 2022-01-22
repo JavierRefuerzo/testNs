@@ -193,7 +193,7 @@ class Controller(udi_interface.Node):
         url = params[Params.url.value]
         if self.iTach == None:
             LOGGER.info('Creating iTach Controller')
-            self.iTach = ITach(address=url, errorObserver=self.setError)
+            self.iTach = ITach(address=url, errorObserver=self.polyObserver.iTachError)
             self.polyObserver.iTach = self.iTach
         else:
             LOGGER.info('Updating iTach URL')
@@ -267,3 +267,8 @@ class Controller(udi_interface.Node):
             # TODO: remove device from ISY
             LOGGER.info("TODO remove device: " + device.device.name)
             self.deviceNodeList.remove(device)
+
+
+    def stop(self, connector: int) -> str:
+        command = 'stopir,1:' + str(connector)
+        return command

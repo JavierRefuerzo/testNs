@@ -60,9 +60,13 @@ class PolyglotObserver :
 
     #---------- Getters
 
-    def send_command(self, command):
+    def send_command(self, command) -> str:
         if self.iTach == None:
-            return
+            return None
+        return self.iTach.send_command(command= command)
 
-        self.iTach.send_command(command= command)
-        #TODO Check errors and update observers
+    def send_stop_ir_command(self, connector: int) -> str:
+        if self.iTach == None:
+            return None
+        data = self.iTach.stop()
+        return self.iTach.send_command(command= data)

@@ -9,7 +9,7 @@ ST-ctl-ST-NAME = NodeServer Online
 #irdevice
 NDN-irdevice-NAME = IR Code Set
 NDN-irdevice-ICON = Output
-ST-irdevice-ST-NAME = Last Status
+ST-irdevice-GV0-NAME = Last Error
 
 #Shared command names
 

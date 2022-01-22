@@ -24,7 +24,7 @@ class NodeDefTemplate() :
     nodeDef = '''
   <nodeDef id="irdevice" nls="irdevice">
     <sts>
-      <st id="ST" editor="bool" />
+      <st id="GV0" editor="errors" />
 	  </sts>
     <cmds>
       <sends />

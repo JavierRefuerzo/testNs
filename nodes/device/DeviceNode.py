@@ -7,9 +7,9 @@ MIT License
 
 
 from enum import Enum
-from typing import List
 import udi_interface
 from iTachLib.controller.Device import Device
+from nodes.controller.drivers import ErrorValues
 from objects.DocumentModifier import DocumentModifier
 from objects.polyglotObserver import PolyglotObserver
 
@@ -21,12 +21,8 @@ Custom = udi_interface.Custom
 
 #enum for drivers
 class Drivers(Enum):
-    status = "ST"
+    errorDriver = "GV0"
 
-#enum for status values
-class StatusValues(Enum):
-    false = 0
-    true = 1
 
 
 '''
@@ -39,7 +35,7 @@ class DeviceNode(udi_interface.Node):
     #------------- Status Drivers
     # Status Drivers
     drivers = [
-            {'driver': Drivers.status.value, 'value': StatusValues.true.value, 'uom': 2}
+            {'driver': Drivers.errorDriver.value, 'value': ErrorValues.none.value, 'uom': 2}
             ]
 
     
@@ -56,6 +52,7 @@ class DeviceNode(udi_interface.Node):
         self.poly = polyglot
         self.device = device
         self.polyObserver = polyObserver
+        self.polyObserver.iTachError.attach(self.setError)
 
         #Set initial values
         
@@ -73,7 +70,7 @@ class DeviceNode(udi_interface.Node):
         self.poly.addNode(self)
 
         LOGGER.info('update station status')
-        self.setDriver(Drivers.status.value, StatusValues.true.value, True, True)
+        self.setDriver(Drivers.errorDriver.value, StatusValues.true.value, True, True)
         # subscribe to the events we want
         
 
@@ -84,6 +81,8 @@ class DeviceNode(udi_interface.Node):
     
     #---------- Status Setters
    
+    def setError(self, error: int):
+        self.setDriver(Drivers.errorDriver.value, error, True, True)
     
    
     #---------- MQTT Observers
@@ -99,17 +98,11 @@ class DeviceNode(udi_interface.Node):
     #  <p id="CONNECTOR" editor="connector" />
     #  <p id="REPETE" editor="repete" />
     def cmdCOMMAND(self, command):
-        LOGGER.info('cmdCOMMAND: ' + str(command))
         query = command.get('query')
-        LOGGER.info('query: ' + str(query))
         button_uom25 = int(query.get('BUTTON.uom25'))
-        LOGGER.info('button_uom25: ' + str(button_uom25))
         code_uom25 = int(query.get('CODE.uom25'))
-        LOGGER.info('code_uom25: ' + str(code_uom25))
         connector_uom25 = int(query.get('CONNECTOR.uom25'))
-        LOGGER.info('connector_uom25: ' + str(connector_uom25))
         repeat_uom56 = int(query.get('REPEAT.uom56'))
-        LOGGER.info('repeate_uom25: ' + str(repeat_uom56))
         button = self.device.getIrCode(index=button_uom25)
         if button == None:
             return
@@ -119,7 +112,10 @@ class DeviceNode(udi_interface.Node):
 
     # <p id="CONNECTOR" editor="connector" />
     def cmdSTOP(self, command):
-        LOGGER.info('cmd STOP')
+        query = command.get('query')
+        connector_uom25 = int(query.get('CONNECTOR.uom25'))
+        response = self.polyObserver.send_stop_ir_command(connector_uom25)
+        LOGGER.info('restponse: ' + str(response))
 
 
    
