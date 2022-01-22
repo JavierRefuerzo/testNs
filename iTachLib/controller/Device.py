@@ -6,7 +6,6 @@ Copyright (C) 2021 Javier Refuerzo
 """
 
 from typing import List
-from iTachLib.controller import IrCode
 from iTachLib.controller.IrCode import IrCode
 
 
